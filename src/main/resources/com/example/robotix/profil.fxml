@@ -11,42 +11,64 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.robotix.showProfilController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.robotix.ProfilController">
    <left>
       <AnchorPane prefHeight="407.0" prefWidth="228.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="407.0" fitWidth="228.0">
-               <image>
-                  <Image url="@./image/form.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="quitButton" layoutX="9.0" layoutY="14.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="207.0" style="-fx-background-color: #3274B5; -fx-border-color: #ffffff; -fx-border-radius: 8;" text="QUITTER" textFill="WHITE">
-               <font>
-                  <Font name="American Typewriter Bold" size="13.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <SplitMenuButton fx:id="menuBar" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="70.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="210.0" style="-fx-background-color: #3274B5; -fx-border-radius: 0; -fx-border-color: #ffffff;" text="MENU" textAlignment="CENTER" textFill="#3274b5">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </SplitMenuButton>
+            <AnchorPane prefHeight="407.0" prefWidth="228.0">
+               <children>
+                  <ImageView fitHeight="407.0" fitWidth="228.0">
+                     <image>
+                        <Image url="@image/form.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="quitButton" layoutX="9.0" layoutY="14.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="207.0" style="-fx-background-color: #3274B5; -fx-border-color: #ffffff; -fx-border-radius: 8;" text="Déconnexion" textFill="WHITE">
+                     <font>
+                        <Font name="American Typewriter Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <SplitMenuButton fx:id="menuBar" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="111.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="210.0" style="-fx-background-color: #3274B5; -fx-border-radius: 0; -fx-border-color: #ffffff;" text="MENU" textAlignment="CENTER" textFill="#3274b5">
+                     <items>
+                        <MenuItem fx:id="gestionSuiveurs" mnemonicParsing="false" onAction="#gestionSuiveursAction" text="Gérer mes Suiveurs" />
+                        <MenuItem fx:id="voirProfil" mnemonicParsing="false" onAction="#voirProfilAction" text="Voir mon Profil" />
+                        <MenuItem fx:id="voirActivite" mnemonicParsing="false" onAction="#voirActiviteAction" text="Voir mes Activités" />
+                        <MenuItem fx:id="achatComposante" mnemonicParsing="false" onAction="#achatConposanteAction" text="Acheter une Composante" />
+                        <MenuItem fx:id="voirActiviteDisponible" mnemonicParsing="false" onAction="#voirActiviteDisposAction" text="Voir les activités disponibles" />
+                        <MenuItem fx:id="gestionFlotte" mnemonicParsing="false" onAction="#gestionFlotteAction" text="Gérer ma Flotte" />
+                        <MenuItem fx:id="gestionInteret" mnemonicParsing="false" onAction="#gestionInteretAction" text="Gérer mes Intérêts" />
+                     </items>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </SplitMenuButton>
+                  <Button fx:id="rechercheButton" layoutX="9.0" layoutY="63.0" mnemonicParsing="false" onAction="#rechercheAction" prefHeight="37.0" prefWidth="207.0" style="-fx-background-color: #3274B5; -fx-border-color: #ffffff; -fx-border-radius: 8;" text=" Recherche " textFill="WHITE">
+                     <font>
+                        <Font name="American Typewriter Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <ImageView fitHeight="29.0" fitWidth="36.0" layoutX="176.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/loupe.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </left>
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="332.0" style="-fx-background-color: #DEE9EC;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="helloUser" alignment="CENTER" layoutX="62.0" layoutY="80.0" prefHeight="15.0" prefWidth="163.0" text="Bonjour, Samuel Petit" textFill="#3071ab">
+            <Label fx:id="helloUser" alignment="CENTER" layoutX="62.0" layoutY="91.0" prefHeight="15.0" prefWidth="163.0" text="Bonjour, Samuel Petit" textFill="#3071ab">
                <font>
                   <Font name="American Typewriter Bold" size="12.0" />
                </font>
@@ -55,14 +77,14 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <ImageView fitHeight="63.0" fitWidth="99.0" layoutX="94.0" layoutY="7.0">
+            <ImageView fitHeight="63.0" fitWidth="99.0" layoutX="94.0" layoutY="22.0">
                <image>
-                  <Image url="@../../../../../../../../Desktop/profile.png" />
+                  <Image url="@./image/profile.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="26.0" fitWidth="39.0" layoutX="23.0" layoutY="126.0">
                <image>
-                  <Image url="@../../../../../../../../Desktop/profile.png" />
+                  <Image url="@./image/profile.png" />
                </image>
             </ImageView>
             <Label fx:id="nomUser" layoutX="60.0" layoutY="139.0" prefHeight="15.0" prefWidth="163.0" text="samuel.petit" textFill="#3071ab">
@@ -77,7 +99,7 @@
             </Label>
             <ImageView fitHeight="33.0" fitWidth="35.0" layoutX="25.0" layoutY="169.0">
                <image>
-                  <Image url="@../../../../../../../../Desktop/phone.png" />
+                  <Image url="@./image/phone.png" />
                </image>
             </ImageView>
             <Label layoutX="59.0" layoutY="168.0" prefHeight="15.0" prefWidth="163.0" text="téléphone" textFill="#3071ab">
@@ -90,32 +112,32 @@
                   <Font name="American Typewriter" size="10.0" />
                </font>
             </Label>
-            <ImageView fitHeight="16.0" fitWidth="26.0" layoutX="30.0" layoutY="223.0">
+            <ImageView fitHeight="20.0" fitWidth="28.0" layoutX="31.0" layoutY="223.0">
                <image>
-                  <Image url="@../../../../../../../../Desktop/email.png" />
+                  <Image url="@./image/email.png" />
                </image>
             </ImageView>
-            <Label layoutX="61.0" layoutY="216.0" prefHeight="15.0" prefWidth="163.0" text="email" textFill="#3071ab">
+            <Label layoutX="65.0" layoutY="216.0" prefHeight="15.0" prefWidth="163.0" text="email" textFill="#3071ab">
                <font>
                   <Font name="American Typewriter" size="7.0" />
                </font>
             </Label>
-            <Label fx:id="emailUser" layoutX="60.0" layoutY="224.0" prefHeight="15.0" prefWidth="163.0" text="samuel.petit@umontreal.ca" textFill="#3071ab">
+            <Label fx:id="emailUser" layoutX="65.0" layoutY="232.0" prefHeight="15.0" prefWidth="163.0" text="samuel.petit@umontreal.ca" textFill="#3071ab">
                <font>
                   <Font name="American Typewriter" size="10.0" />
                </font>
             </Label>
-            <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="27.0" layoutY="256.0">
+            <ImageView fitHeight="31.0" fitWidth="26.0" layoutX="33.0" layoutY="256.0">
                <image>
-                  <Image url="@../../../../../../../../Desktop/cadena.png" />
+                  <Image url="@./image/cadena.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="21.0" fitWidth="25.0" layoutX="30.0" layoutY="300.0">
                <image>
-                  <Image url="@../../../../../../../../Desktop/compagnie.png" />
+                  <Image url="@./image/compagnie.png" />
                </image>
             </ImageView>
-            <Label layoutX="54.0" layoutY="255.0" prefHeight="15.0" prefWidth="163.0" text="mot de passe" textFill="#3071ab">
+            <Label layoutX="65.0" layoutY="256.0" prefHeight="15.0" prefWidth="163.0" text="mot de passe" textFill="#3071ab">
                <font>
                   <Font name="American Typewriter" size="7.0" />
                </font>
@@ -125,7 +147,7 @@
                   <Font name="American Typewriter" size="7.0" />
                </font>
             </Label>
-            <Label fx:id="mdpUser" layoutX="57.0" layoutY="269.0" prefHeight="15.0" prefWidth="163.0" text="************" textFill="#3071ab">
+            <Label fx:id="mdpUser" layoutX="65.0" layoutY="271.0" prefHeight="15.0" prefWidth="163.0" text="************" textFill="#3071ab">
                <font>
                   <Font name="American Typewriter" size="10.0" />
                </font>

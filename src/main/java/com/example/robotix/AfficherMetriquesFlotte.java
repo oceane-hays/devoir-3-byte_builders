@@ -1,3 +1,5 @@
+package com.example.robotix;
+
 import java.util.List;
 
 public class AfficherMetriquesFlotte {

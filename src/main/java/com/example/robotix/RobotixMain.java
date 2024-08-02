@@ -1,10 +1,12 @@
+package com.example.robotix;
 
-import java.util.*;
-import java.io.*;
-import java.lang.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public class RobotixMain {
+    public static void run(String[] args) {
 
         HashMap<String, Utilisateur> liste_utilisateur = new HashMap<String, Utilisateur>(); // < identifiant , utilisateur >
         HashMap<String, Fournisseur> liste_fournisseur = new HashMap<String, Fournisseur>(); // < nom_compagnie , fournisseur >

@@ -1,2 +1,4 @@
-package com.example.robotix;public class FormUserController {
+package com.example.robotix;
+
+public class FormUserController {
 }

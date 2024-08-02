@@ -14,42 +14,64 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.robotix.activiteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.robotix.AchatComposanteContoller">
    <left>
       <AnchorPane prefHeight="407.0" prefWidth="228.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="407.0" fitWidth="228.0">
-               <image>
-                  <Image url="@./image/form.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="quitButton" layoutX="9.0" layoutY="14.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="207.0" style="-fx-background-color: #3274B5; -fx-border-color: #ffffff; -fx-border-radius: 8;" text="QUITTER" textFill="WHITE">
-               <font>
-                  <Font name="American Typewriter Bold" size="13.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <SplitMenuButton fx:id="menuBar" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="70.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="210.0" style="-fx-background-color: #3274B5; -fx-border-radius: 0; -fx-border-color: #ffffff;" text="MENU" textAlignment="CENTER" textFill="#3274b5">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </SplitMenuButton>
+            <AnchorPane prefHeight="407.0" prefWidth="228.0">
+               <children>
+                  <ImageView fitHeight="407.0" fitWidth="228.0">
+                     <image>
+                        <Image url="@image/form.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="quitButton" layoutX="9.0" layoutY="14.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="207.0" style="-fx-background-color: #3274B5; -fx-border-color: #ffffff; -fx-border-radius: 8;" text="Déconnexion" textFill="WHITE">
+                     <font>
+                        <Font name="American Typewriter Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <SplitMenuButton fx:id="menuBar" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="111.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="210.0" style="-fx-background-color: #3274B5; -fx-border-radius: 0; -fx-border-color: #ffffff;" text="MENU" textAlignment="CENTER" textFill="#3274b5">
+                     <items>
+                        <MenuItem fx:id="gestionSuiveurs" mnemonicParsing="false" onAction="#gestionSuiveursAction" text="Gérer mes Suiveurs" />
+                        <MenuItem fx:id="voirProfil" mnemonicParsing="false" onAction="#voirProfilAction" text="Voir mon Profil" />
+                        <MenuItem fx:id="voirActivite" mnemonicParsing="false" onAction="#voirActiviteAction" text="Voir mes Activités" />
+                        <MenuItem fx:id="achatComposante" mnemonicParsing="false" onAction="#achatConposanteAction" text="Acheter une Composante" />
+                        <MenuItem fx:id="voirActiviteDisponible" mnemonicParsing="false" onAction="#voirActiviteDisposAction" text="Voir les activités disponibles" />
+                        <MenuItem fx:id="gestionFlotte" mnemonicParsing="false" onAction="#gestionFlotteAction" text="Gérer ma Flotte" />
+                        <MenuItem fx:id="gestionInteret" mnemonicParsing="false" onAction="#gestionInteretAction" text="Gérer mes Intérêts" />
+                     </items>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </SplitMenuButton>
+                  <Button fx:id="rechercheButton" layoutX="9.0" layoutY="63.0" mnemonicParsing="false" onAction="#rechercheAction" prefHeight="37.0" prefWidth="207.0" style="-fx-background-color: #3274B5; -fx-border-color: #ffffff; -fx-border-radius: 8;" text=" Recherche " textFill="WHITE">
+                     <font>
+                        <Font name="American Typewriter Bold" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <ImageView fitHeight="29.0" fitWidth="36.0" layoutX="176.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/loupe.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </left>
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="332.0" style="-fx-background-color: #DEE9EC;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="62.0" layoutY="29.0" prefHeight="15.0" prefWidth="163.0" text="Liste de vos Activités" textFill="#3071ab">
+            <Label alignment="CENTER" layoutX="24.0" layoutY="29.0" prefHeight="16.0" prefWidth="209.0" text="Centre d'achat des composantes" textFill="#3071ab">
                <font>
                   <Font name="American Typewriter Bold" size="12.0" />
                </font>
@@ -62,23 +84,25 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <TableView fx:id="tabActivite" layoutX="10.0" layoutY="67.0" prefHeight="220.0" prefWidth="272.0">
+            <TableView fx:id="tabComposante" layoutX="10.0" layoutY="67.0" prefHeight="220.0" prefWidth="272.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="nomCompTab" prefWidth="58.0" text="Nom" />
+                <TableColumn fx:id="typeCompTab" prefWidth="59.0" text="Type" />
+                  <TableColumn fx:id="descpCompTab" prefWidth="97.0" text="description" />
+                  <TableColumn fx:id="prixCompTab" prefWidth="57.0" text="Prix" />
               </columns>
             </TableView>
-            <Label layoutX="9.0" layoutY="295.0" prefHeight="16.0" prefWidth="223.0" text="nom de l'activité à supprimer :" textFill="#3071ab">
+            <Label layoutX="9.0" layoutY="295.0" prefHeight="16.0" prefWidth="270.0" text="nom de la composante que vous souhaitez :" textFill="#3071ab">
                <font>
                   <Font name="American Typewriter" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="entrerNomActivite" layoutX="9.0" layoutY="311.0" prefHeight="27.0" prefWidth="269.0">
+            <TextField fx:id="entrerNomComposante" layoutX="9.0" layoutY="311.0" prefHeight="27.0" prefWidth="269.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </TextField>
-            <Label fx:id="errorMessageAct" alignment="CENTER" layoutX="35.0" layoutY="338.0" prefHeight="16.0" prefWidth="223.0" text="activité invalide ou inexistante" textFill="#ab3232">
+            <Label fx:id="errorMessageAchat" alignment="CENTER" layoutX="35.0" layoutY="338.0" prefHeight="16.0" prefWidth="223.0" text="composante non trouvée" textFill="#bc2e2e">
                <font>
                   <Font name="American Typewriter" size="10.0" />
                </font>

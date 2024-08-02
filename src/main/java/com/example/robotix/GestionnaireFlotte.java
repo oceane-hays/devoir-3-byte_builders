@@ -1,3 +1,5 @@
+package com.example.robotix;
+
 public class GestionnaireFlotte {
     private static Utilisateur utilisateur;
 

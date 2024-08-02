@@ -1,3 +1,5 @@
+package com.example.robotix;
+
 import java.util.*;
 
 public class Systeme {
@@ -7,9 +9,9 @@ public class Systeme {
     public HashMap<Integer, Interet> liste_interet;
     public ArrayList<Composante> liste_composante;
 
-    public Systeme (HashMap<String, Utilisateur> liste_utilisateur, HashMap<String, Fournisseur> liste_fournisseur,
-                    HashMap<Integer, Activite> liste_activites, HashMap<Integer, Interet> liste_interet,
-                    ArrayList<Composante> liste_composante) {
+    public Systeme(HashMap<String, Utilisateur> liste_utilisateur, HashMap<String, Fournisseur> liste_fournisseur,
+                   HashMap<Integer, Activite> liste_activites, HashMap<Integer, Interet> liste_interet,
+                   ArrayList<Composante> liste_composante) {
 
         this.liste_utilisateur = liste_utilisateur;
         this.liste_fournisseur = liste_fournisseur;

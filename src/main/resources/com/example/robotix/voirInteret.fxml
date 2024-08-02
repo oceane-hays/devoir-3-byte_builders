@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.robotix.activiteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.robotix.VoirInteretController">
    <left>
       <AnchorPane prefHeight="407.0" prefWidth="228.0" BorderPane.alignment="CENTER">
          <children>
@@ -25,7 +25,7 @@
                         <Image url="@image/form.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="quitButton1" layoutX="9.0" layoutY="14.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="207.0" style="-fx-background-color: #3274B5; -fx-border-color: #ffffff; -fx-border-radius: 8;" text="Déconnexion" textFill="WHITE">
+                  <Button fx:id="quitButton" layoutX="9.0" layoutY="14.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="207.0" style="-fx-background-color: #3274B5; -fx-border-color: #ffffff; -fx-border-radius: 8;" text="Déconnexion" textFill="WHITE">
                      <font>
                         <Font name="American Typewriter Bold" size="13.0" />
                      </font>
@@ -33,15 +33,15 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <SplitMenuButton fx:id="menuBar1" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="111.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="210.0" style="-fx-background-color: #3274B5; -fx-border-radius: 0; -fx-border-color: #ffffff;" text="MENU" textAlignment="CENTER" textFill="#3274b5">
+                  <SplitMenuButton fx:id="menuBar" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="111.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="210.0" style="-fx-background-color: #3274B5; -fx-border-radius: 0; -fx-border-color: #ffffff;" text="MENU" textAlignment="CENTER" textFill="#3274b5">
                      <items>
-                        <MenuItem fx:id="gestionSuiveurs" mnemonicParsing="false" text="Gérer mes Suiveurs" />
-                        <MenuItem fx:id="voirProfil" mnemonicParsing="false" text="Voir mon Profil" />
-                        <MenuItem fx:id="voirActivite" mnemonicParsing="false" text="Voir mes Activités" />
-                        <MenuItem fx:id="achatComposante" mnemonicParsing="false" text="Acheter une Composante" />
-                        <MenuItem fx:id="voirActiviteDisponible" mnemonicParsing="false" text="Voir les activités disponibles" />
-                        <MenuItem fx:id="gestionFlotte" mnemonicParsing="false" text="Gérer ma Flotte" />
-                        <MenuItem fx:id="gestionInteret" mnemonicParsing="false" text="Gérer mes Intérêts" />
+                        <MenuItem fx:id="gestionSuiveurs" mnemonicParsing="false" onAction="#gestionSuiveursAction" text="Gérer mes Suiveurs" />
+                        <MenuItem fx:id="voirProfil" mnemonicParsing="false" onAction="#voirProfilAction" text="Voir mon Profil" />
+                        <MenuItem fx:id="voirActivite" mnemonicParsing="false" onAction="#voirActiviteAction" text="Voir mes Activités" />
+                        <MenuItem fx:id="achatComposante" mnemonicParsing="false" onAction="#achatConposanteAction" text="Acheter une Composante" />
+                        <MenuItem fx:id="voirActiviteDisponible" mnemonicParsing="false" onAction="#voirActiviteDisposAction" text="Voir les activités disponibles" />
+                        <MenuItem fx:id="gestionFlotte" mnemonicParsing="false" onAction="#gestionFlotteAction" text="Gérer ma Flotte" />
+                        <MenuItem fx:id="gestionInteret" mnemonicParsing="false" onAction="#gestionInteretAction" text="Gérer mes Intérêts" />
                      </items>
                      <font>
                         <Font name="System Bold" size="13.0" />
@@ -50,7 +50,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </SplitMenuButton>
-                  <Button fx:id="rechercheButton" layoutX="9.0" layoutY="63.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="207.0" style="-fx-background-color: #3274B5; -fx-border-color: #ffffff; -fx-border-radius: 8;" text=" Recherche " textFill="WHITE">
+                  <Button fx:id="rechercheButton" layoutX="9.0" layoutY="63.0" mnemonicParsing="false" onAction="#rechercheAction" prefHeight="37.0" prefWidth="207.0" style="-fx-background-color: #3274B5; -fx-border-color: #ffffff; -fx-border-radius: 8;" text=" Recherche " textFill="WHITE">
                      <font>
                         <Font name="American Typewriter Bold" size="13.0" />
                      </font>
@@ -71,7 +71,7 @@
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="332.0" style="-fx-background-color: #DEE9EC;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="62.0" layoutY="29.0" prefHeight="15.0" prefWidth="163.0" text="Liste de vos Activités" textFill="#3071ab">
+            <Label alignment="CENTER" layoutX="62.0" layoutY="29.0" prefHeight="15.0" prefWidth="163.0" text="Liste de vos Intérêts" textFill="#3071ab">
                <font>
                   <Font name="American Typewriter Bold" size="12.0" />
                </font>
@@ -84,28 +84,31 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <TableView fx:id="tabActivite" layoutX="10.0" layoutY="67.0" prefHeight="220.0" prefWidth="272.0">
+            <TableView fx:id="tabInteret" layoutX="10.0" layoutY="67.0" prefHeight="220.0" prefWidth="272.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="numeroTab" prefWidth="75.0" text="Numéro" />
+                <TableColumn fx:id="descTab" prefWidth="75.0" text="Description" />
               </columns>
             </TableView>
-            <Label layoutX="9.0" layoutY="295.0" prefHeight="16.0" prefWidth="223.0" text="nom de l'activité à supprimer :" textFill="#3071ab">
+            <Label layoutX="9.0" layoutY="295.0" prefHeight="16.0" prefWidth="223.0" text="numéro de l'intérêts à supprimer :" textFill="#3071ab">
                <font>
                   <Font name="American Typewriter" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="entrerNomActivite" layoutX="9.0" layoutY="311.0" prefHeight="27.0" prefWidth="269.0">
+            <TextField fx:id="entrerInteretSupp" layoutX="9.0" layoutY="311.0" prefHeight="27.0" prefWidth="269.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </TextField>
-            <Label fx:id="errorMessageAct" alignment="CENTER" layoutX="35.0" layoutY="338.0" prefHeight="16.0" prefWidth="223.0" text="activité invalide ou inexistante" textFill="#ab3232">
+            <Label fx:id="errorMessageInt" alignment="CENTER" layoutX="35.0" layoutY="338.0" prefHeight="16.0" prefWidth="223.0" text="Le numéro est invalide ou inexistant" textFill="#ab3232">
                <font>
                   <Font name="American Typewriter" size="10.0" />
                </font>
             </Label>
-            <Button fx:id="validerButton" layoutX="82.0" layoutY="361.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="137.0" style="-fx-background-color: #3274B5; -fx-border-radius: 8; -fx-border-color: #3274B5; -fx-background-radius: 8;" text="Valider" textFill="#2e6394" />
+            <Button fx:id="validerButton" layoutX="82.0" layoutY="361.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="137.0" style="-fx-background-color: #3274B5; -fx-border-radius: 8; -fx-border-color: #3274B5; -fx-background-radius: 8;" text="Valider" textFill="#2e6394">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </AnchorPane>
    </center>

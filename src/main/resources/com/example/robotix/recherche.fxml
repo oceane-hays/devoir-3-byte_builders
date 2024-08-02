@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TableColumn?>
@@ -25,7 +26,7 @@
                         <Image url="@image/form.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="quitButton1" layoutX="9.0" layoutY="14.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="207.0" style="-fx-background-color: #3274B5; -fx-border-color: #ffffff; -fx-border-radius: 8;" text="Déconnexion" textFill="WHITE">
+                  <Button fx:id="quitButton" layoutX="9.0" layoutY="14.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="207.0" style="-fx-background-color: #3274B5; -fx-border-color: #ffffff; -fx-border-radius: 8;" text="Déconnexion" textFill="WHITE">
                      <font>
                         <Font name="American Typewriter Bold" size="13.0" />
                      </font>
@@ -33,7 +34,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <SplitMenuButton fx:id="menuBar1" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="111.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="210.0" style="-fx-background-color: #3274B5; -fx-border-radius: 0; -fx-border-color: #ffffff;" text="MENU" textAlignment="CENTER" textFill="#3274b5">
+                  <SplitMenuButton fx:id="menuBar" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="111.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="210.0" style="-fx-background-color: #3274B5; -fx-border-radius: 0; -fx-border-color: #ffffff;" text="MENU" textAlignment="CENTER" textFill="#3274b5">
                      <items>
                         <MenuItem fx:id="gestionSuiveurs" mnemonicParsing="false" text="Gérer mes Suiveurs" />
                         <MenuItem fx:id="voirProfil" mnemonicParsing="false" text="Voir mon Profil" />
@@ -71,7 +72,7 @@
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="332.0" style="-fx-background-color: #DEE9EC;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="62.0" layoutY="29.0" prefHeight="15.0" prefWidth="163.0" text="Liste de vos Suiveurs" textFill="#3071ab">
+            <Label alignment="CENTER" layoutX="57.0" layoutY="21.0" prefHeight="15.0" prefWidth="163.0" text="RECHERCHE" textFill="#3071ab">
                <font>
                   <Font name="American Typewriter Bold" size="12.0" />
                </font>
@@ -84,30 +85,33 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <TableView fx:id="tabActivite" layoutX="10.0" layoutY="67.0" prefHeight="220.0" prefWidth="272.0">
+            <TableView fx:id="tabRecherche" layoutX="11.0" layoutY="166.0" prefHeight="220.0" prefWidth="272.0">
               <columns>
-                <TableColumn fx:id="pseudoTab" prefWidth="69.0" text="Pseudo" />
-                <TableColumn fx:id="nomTab" prefWidth="49.0" text="nom" />
-                  <TableColumn fx:id="prenomTab" prefWidth="64.0" text="prénom" />
-                  <TableColumn fx:id="courrielTab" prefWidth="89.0" text="courriel" />
+                <TableColumn fx:id="nomTab" prefWidth="102.0" text="nom" />
+                  <TableColumn fx:id="typeTab" prefWidth="166.0" text="type de composante" />
               </columns>
             </TableView>
-            <Label layoutX="9.0" layoutY="295.0" prefHeight="16.0" prefWidth="223.0" text="pseudo du suiveur à supprimer :" textFill="#3071ab">
+            <MenuButton fx:id="founisseurButton" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" text="Fournisseur" textFill="#1c5d9c">
+              <items>
+                <MenuItem fx:id="nomFour" mnemonicParsing="false" text="par Nom" />
+                <MenuItem fx:id="addresseFour" mnemonicParsing="false" text="par Adresse" />
+                  <MenuItem fx:id="compFour" mnemonicParsing="false" text="par Composante" />
+              </items>
                <font>
-                  <Font name="American Typewriter" size="12.0" />
+                  <Font name="American Typewriter" size="13.0" />
                </font>
-            </Label>
-            <TextField fx:id="entrerNomActivite" layoutX="9.0" layoutY="311.0" prefHeight="27.0" prefWidth="269.0">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </TextField>
-            <Label fx:id="errorMessageAct" alignment="CENTER" layoutX="35.0" layoutY="338.0" prefHeight="16.0" prefWidth="223.0" text="pseudo invalide ou inexistant" textFill="#ab3232">
+            </MenuButton>
+            <MenuButton layoutX="14.0" layoutY="120.0" mnemonicParsing="false" text="Composante" textFill="#2975ae">
+              <items>
+                <MenuItem fx:id="nomComp" mnemonicParsing="false" text="par Nom" />
+                <MenuItem fx:id="typeComp" mnemonicParsing="false" text="par Type" />
+              </items>
                <font>
-                  <Font name="American Typewriter" size="10.0" />
+                  <Font name="American Typewriter" size="13.0" />
                </font>
-            </Label>
-            <Button fx:id="validerButton" layoutX="82.0" layoutY="361.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="137.0" style="-fx-background-color: #3274B5; -fx-border-radius: 8; -fx-border-color: #3274B5; -fx-background-radius: 8;" text="Valider" textFill="#2e6394" />
+            </MenuButton>
+            <TextField floatText="entrer votre recherche" layoutX="139.0" layoutY="68.0" prefHeight="37.0" prefWidth="141.0" />
+            <TextField floatText="entrer votre recherche" layoutX="139.0" layoutY="105.0" prefHeight="37.0" prefWidth="142.0" />
          </children>
       </AnchorPane>
    </center>
