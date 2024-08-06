@@ -46,5 +46,7 @@ public class SystemeTest {
         assertNull(result2, "Erreur : Aucune composante ne devrait être trouvée pour 'ComposanteInexistante'.");
     }
 
+    // Insafe test
+
 
 }

@@ -2,46 +2,43 @@ package com.example.robotix;
 
 import java.util.ArrayList;
 
-
 public class Utilisateur {
-        private String identifiant;
-        private String nom;
-        private String prenom;
-        private String mot_de_passe;
-        private String courriel;
-        private String telephone;
-        private String compagnie;
-        private ArrayList<Interet> interet;
-        public ArrayList<Utilisateur> followers;
-        public ArrayList<Activite> activite;
-        public ArrayList<Robot> liste_robot = new ArrayList<Robot>();
-        private String userId;
-        private String email;
-        private boolean emailNotificationsEnabled;
+    private String identifiant;
+    private String nom;
+    private String prenom;
+    private String mot_de_passe;
+    private String courriel;
+    private String telephone;
+    private String compagnie;
+    private ArrayList<Interet> interet;
+    public ArrayList<Utilisateur> followers;
+    public ArrayList<Activite> activite;
+    public ArrayList<Robot> liste_robot = new ArrayList<Robot>();
+    private String userId;
+    private String email;
+    private boolean emailNotificationsEnabled;
 
-        public Utilisateur(String identifiant, String nom, String prenom, String mot_de_passe,
-                           String courriel, String telephone, String compagnie,
-                           ArrayList<Interet> interet, ArrayList<Utilisateur> followers,
-                           ArrayList<Activite> activite) {
+    public Utilisateur(String identifiant, String nom, String prenom, String mot_de_passe,
+                       String courriel, String telephone, String compagnie,
+                       ArrayList<Interet> interet, ArrayList<Utilisateur> followers,
+                       ArrayList<Activite> activite) {
+        this.identifiant = identifiant;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mot_de_passe = mot_de_passe;
+        this.courriel = courriel;
+        this.telephone = telephone;
+        this.compagnie = compagnie;
+        this.interet = interet;
+        this.followers = followers;
+        this.activite = activite;
+    }
 
-            this.identifiant = identifiant;
-            this.nom = nom;
-            this.prenom = prenom;
-            this.mot_de_passe = mot_de_passe;
-            this.courriel = courriel;
-            this.telephone = telephone;
-            this.compagnie = compagnie;
-            this.interet = interet;
-            this.followers = followers;
-            this.activite = activite;
-        }
-
-        public Utilisateur(String userId, String email, boolean emailNotificationsEnabled) {
-            this.userId = userId;
-            this.email = email;
-            this.emailNotificationsEnabled = emailNotificationsEnabled;
-        }
-
+    public Utilisateur(String userId, String email, boolean emailNotificationsEnabled) {
+        this.userId = userId;
+        this.email = email;
+        this.emailNotificationsEnabled = emailNotificationsEnabled;
+    }
 
     public String getIdentifiant() {
         return identifiant;
@@ -79,9 +76,9 @@ public class Utilisateur {
         return activite;
     }
 
-    public ArrayList<Robot> getListeRobot() {return liste_robot;}
-
-    // TODO public void addFollowers(utilisteur Utiliseur)
+    public ArrayList<Robot> getListeRobot() {
+        return liste_robot;
+    }
 
     public void removeFollowers(String pseudo) {
         for (Utilisateur user : followers) {
@@ -127,9 +124,6 @@ public class Utilisateur {
         this.interet = interet;
     }
 
-
-
-
     @Override
     public String toString() {
         StringBuilder followersIds = new StringBuilder();
@@ -165,7 +159,6 @@ public class Utilisateur {
         return "identifiant : " + identifiant + '\n' +
                 "nom : " + nom + '\n' +
                 "prenom : " + prenom + '\n' ;
-
     }
 
     public String toStringInteret() {
@@ -181,15 +174,13 @@ public class Utilisateur {
     }
 
     public void ajouterRobot(Robot robot) {
-            liste_robot.add(robot);
+        liste_robot.add(robot);
     }
 
     public void supprimerRobot(Robot robot) {
         liste_robot.remove(robot);
     }
 
-
-    // Getters and Setters
     public String getUserId() {
         return userId;
     }
