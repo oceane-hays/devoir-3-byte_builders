@@ -8,16 +8,26 @@ public class Systeme {
     public HashMap<Integer, Activite> liste_activites;
     public HashMap<Integer, Interet> liste_interet;
     public ArrayList<Composante> liste_composante;
+    public List<Notification> notifications;
+
 
     public Systeme(HashMap<String, Utilisateur> liste_utilisateur, HashMap<String, Fournisseur> liste_fournisseur,
                    HashMap<Integer, Activite> liste_activites, HashMap<Integer, Interet> liste_interet,
-                   ArrayList<Composante> liste_composante) {
+                   ArrayList<Composante> liste_composante, List <Notification> notifications) {
 
         this.liste_utilisateur = liste_utilisateur;
         this.liste_fournisseur = liste_fournisseur;
         this.liste_activites   = liste_activites;
         this.liste_interet     = liste_interet;
         this.liste_composante  = liste_composante;
+        this.notifications = new ArrayList<>();
+
+    }
+
+    public Systeme(HashMap<String, Utilisateur> listeUtilisateur, HashMap<String, Fournisseur> listeFournisseur,
+                   HashMap<Integer, Activite> listeActivites, HashMap<Integer, Interet> listeInteret,
+                   ArrayList<Composante> listeComposante) {
+        this(listeUtilisateur, listeFournisseur, listeActivites, listeInteret, listeComposante, new ArrayList<>());
     }
 
     public HashMap<String, Utilisateur> getListeUtilisateur() {
@@ -702,4 +712,16 @@ public class Systeme {
             System.out.println("Option invalide.");
         }
     }
+
+    public void sendNotification(String message, String recipientId) {
+        Notification notification = new Notification(message, recipientId);
+        notifications.add(notification);
+
+        System.out.println("Notification sent: " + notification);
+    }
+
+    public List<Notification> getNotifications() {
+        return new ArrayList<>(notifications);
+    }
+
 }

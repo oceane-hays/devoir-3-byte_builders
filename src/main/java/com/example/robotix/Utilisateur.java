@@ -15,6 +15,9 @@ public class Utilisateur {
         public ArrayList<Utilisateur> followers;
         public ArrayList<Activite> activite;
         public ArrayList<Robot> liste_robot = new ArrayList<Robot>();
+        private String userId;
+        private String email;
+        private boolean emailNotificationsEnabled;
 
         public Utilisateur(String identifiant, String nom, String prenom, String mot_de_passe,
                            String courriel, String telephone, String compagnie,
@@ -32,6 +35,13 @@ public class Utilisateur {
             this.followers = followers;
             this.activite = activite;
         }
+
+        public Utilisateur(String userId, String email, boolean emailNotificationsEnabled) {
+            this.userId = userId;
+            this.email = email;
+            this.emailNotificationsEnabled = emailNotificationsEnabled;
+        }
+
 
     public String getIdentifiant() {
         return identifiant;
@@ -169,11 +179,38 @@ public class Utilisateur {
     public String toStringFollowers() {
         return  "utilisateur : " + followers + '\n' ;
     }
+
     public void ajouterRobot(Robot robot) {
             liste_robot.add(robot);
     }
 
     public void supprimerRobot(Robot robot) {
         liste_robot.remove(robot);
+    }
+
+
+    // Getters and Setters
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isEmailNotificationsEnabled() {
+        return emailNotificationsEnabled;
+    }
+
+    public void setEmailNotificationsEnabled(boolean emailNotificationsEnabled) {
+        this.emailNotificationsEnabled = emailNotificationsEnabled;
     }
 }
