@@ -31,6 +31,14 @@ public class Validation {
         return validerNumero(scanner.nextLine());
     }
 
+    public static String validerMotDePasse(String motDePasse) {
+        if (motDePasse.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$")) {
+            return motDePasse;
+        }
+        System.out.println("Mot de passe non valide. Il doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule et un chiffre.");
+        return validerMotDePasse(scanner.nextLine());
+    }
+
     public static int validerChoix(int max) {
         int choice;
 

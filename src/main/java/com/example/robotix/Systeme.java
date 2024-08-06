@@ -51,11 +51,6 @@ public class Systeme {
             liste_fournisseur.put(nomCompagnie, fournisseur);
         }
     }
-    public void ajouterActivite(int idActivite, Activite nomActivite) {
-        if (!liste_activites.containsKey(idActivite)) {
-            liste_activites.put(idActivite, nomActivite);
-        }
-    }
 
     public void afficherUtilisateurs() {
         for (Map.Entry<String, Utilisateur> entry : liste_utilisateur.entrySet()) {
@@ -84,14 +79,8 @@ public class Systeme {
         }
     }
 
-    public Activite rechercherActivite(int id) {
-        if (liste_activites.containsKey(id)) {
-            return liste_activites.get(id);
-        } else {
-            System.out.println("Activité non trouvé ou numero entré incorrect. ");
-            return null;
-        }
-    }
+
+    // -------------------------------------------------------------------------------------------- SECTION DE RECHERCHE
 
     public Utilisateur rechercherUtilisateur(String identifiant) {
         if (liste_utilisateur.containsKey(identifiant)) {
@@ -145,7 +134,6 @@ public class Systeme {
     }
 
 
-
     public void autresFonctionnalites (Scanner scanner) {
 
         System.out.println("1. Rechercher un utilisateur par pseudo");
@@ -163,8 +151,10 @@ public class Systeme {
                 break;
 
             case 1 : // Rechercher un utilisateur
+                afficherUtilisateurs();
                 System.out.println("Entrez l'identifiant de l'utilisateur à rechercher : ");
-                scanner.nextLine();
+
+
                 String id_utilisateur = scanner.nextLine();
                 Utilisateur utilisateur = rechercherUtilisateur(id_utilisateur);
                 if (utilisateur != null) {
@@ -175,8 +165,9 @@ public class Systeme {
                 break;
 
             case 2:
+                afficherFournisseurs();
                 System.out.println("Entrez le nom de la compagnie du fournisseur à rechercher : ");
-                scanner.nextLine();
+
                 String nomFournisseur = scanner.nextLine();
                 Fournisseur fournisseur = rechercherFournisseur(nomFournisseur);
                 if (fournisseur != null) {
@@ -187,8 +178,9 @@ public class Systeme {
                 break;
 
             case 3:
+                afficherFournisseurs();
                 System.out.println("Entrez l'adresse de la compagnie du fournisseur à rechercher : ");
-                scanner.nextLine();
+
                 String adresseFournisseur = scanner.nextLine();
                 Fournisseur fournisseurParAdresse = rechercherFournisseurParAdresse(adresseFournisseur);
                 if (fournisseurParAdresse != null) {
@@ -200,8 +192,9 @@ public class Systeme {
 
                 
             case 4:
+
                 System.out.println("Entrez le type de composante du fournisseur à rechercher : ");
-                scanner.nextLine();
+
                 String type = scanner.nextLine();
                 ArrayList<Fournisseur> fournisseurParType = rechercherFournisseurParTypeComposante(type);
                 if (fournisseurParType != null) {
@@ -212,8 +205,8 @@ public class Systeme {
                 break;
 
             case 5:
-                System.out.println("Entrez l'ID de la composante à rechercher : ");
-                scanner.nextLine();
+                System.out.println("Entrez le nom de la composante à rechercher : ");
+
                 String nomComposante = scanner.next();
                 scanner.nextLine(); // Pour consommer le retour à la ligne après nextInt()
                 Composante composante = rechercherComposante(nomComposante);
@@ -295,7 +288,7 @@ public class Systeme {
                 break;
             case 3:
                 System.out.println("Entrez votre nouveau mot de passe :");
-                String nouveauMotDePasse = scanner.nextLine();
+                String nouveauMotDePasse = Validation.validerMotDePasse(scanner.nextLine());
                 utilisateur.setMotDePasse(nouveauMotDePasse);
                 System.out.println("Mot de passe mis à jour.");
                 break;
@@ -523,7 +516,6 @@ public class Systeme {
                     GestionnaireFlotte.afficherEtatFlotte();
                     break;
 
-
                 case 10 :
                     break;
 
@@ -601,31 +593,28 @@ public class Systeme {
                     switch (modChoice) {
                         case 1:
                             System.out.println("Entrez votre nouveau mot de passe :");
-                            String nouveauMotDePasse = scanner.nextLine();
+                            String nouveauMotDePasse = Validation.validerMotDePasse(scanner.nextLine());
                             fournisseur.setMotDePasse(nouveauMotDePasse);
                             System.out.println("Mot de passe mis à jour.");
                             break;
                         case 2:
                             System.out.println("Entrez votre nouveau courriel :");
-                            String nouveauCourriel = scanner.nextLine();
+                            String nouveauCourriel = Validation.validerEmail(scanner.nextLine());
                             fournisseur.setCourriel(nouveauCourriel);
                             System.out.println("Courriel mis à jour.");
                             break;
                         case 3:
                             System.out.println("Entrez votre nouveau téléphone :");
-                            String nouveauTelephone = scanner.nextLine();
+                            String nouveauTelephone = Validation.validerNumero(scanner.nextLine());
                             fournisseur.setTelephone(nouveauTelephone);
                             System.out.println("Téléphone mis à jour.");
                             break;
                         case 4:
-                            System.out.println("Entrez votre nouveau courriel :");
+                            System.out.println("Entrez votre nouvelle capacite de fabrication :");
                             int capaciteFabrication = scanner.nextInt();
                             fournisseur.setCapaciteFabrication(capaciteFabrication);
                             System.out.println("Courriel mis à jour.");
                             break;
-
-                        default:
-                            System.out.println("Option invalide. Veuillez réessayer.");
                     }
                     System.out.println("Vos informations ont été modifié avec succès !");
                     break;

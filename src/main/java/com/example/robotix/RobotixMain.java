@@ -185,7 +185,7 @@ public class RobotixMain {
                     String prenom = scanner.nextLine();
 
                     System.out.println("créer un mot-de-passe sécuritaire pour votre compte : ");
-                    String mot_de_passe = scanner.nextLine();
+                    String mot_de_passe = Validation.validerMotDePasse(scanner.nextLine());
 
                     String pseudo = Commande.ajouterPseudoUnique(scanner, liste_utilisateur);
 
@@ -253,7 +253,7 @@ public class RobotixMain {
                     String nom_compagnie = Commande.ajouterNomCompagnieUnique(scanner, liste_fournisseur);
 
                     System.out.println("créer un mot-de-passe sécuritaire pour votre compte : ");
-                    String mot_de_passe_fournisseur = scanner.nextLine();
+                    String mot_de_passe_fournisseur = Validation.validerMotDePasse(scanner.nextLine());
 
                     System.out.println("entrez votre adresse : ");
                     String adresse = scanner.nextLine();
