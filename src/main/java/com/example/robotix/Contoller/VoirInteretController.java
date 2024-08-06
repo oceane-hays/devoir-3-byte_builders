@@ -1,4 +1,4 @@
-package com.example.robotix;
+package com.example.robotix.Contoller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -12,7 +12,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.stage.Stage;
 
-public class VoirSuiveurControlleur {
+public class VoirInteretController {
     // -------------------------------------------------------------------------------------------------------- MENU BAR
     @FXML
     private Button quitButton;
@@ -83,8 +83,6 @@ public class VoirSuiveurControlleur {
 
 
     // --------
-
-
 
 
     private void handleButtonAction(ActionEvent event, String pathNam) throws Exception {

@@ -152,8 +152,8 @@ public class Systeme {
         System.out.println("5. Rechercher une composante par nom");
         System.out.println("0. QUITTER");
 
-        int choix = scanner.nextInt();
 
+        int choix = Validation.validerChoix(5);
         switch (choix) {
 
             case 0 :
@@ -234,8 +234,7 @@ public class Systeme {
         System.out.println("2. Non");
         System.out.println("0. QUITTER");
 
-        int choix = scanner.nextInt();
-
+        int choix = Validation.validerChoix(2);
         switch (choix) {
 
             case 0:
@@ -277,9 +276,8 @@ public class Systeme {
         System.out.println("6. Modifier mes intérêts");
         System.out.println("0. Retour à la sélection");
 
-        int modChoice = scanner.nextInt();
-
-        switch (modChoice) {
+        int choix = Validation.validerChoix(6);
+        switch (choix) {
             case 1:
                 System.out.println("Entrez votre nouveau nom :");
                 String nouveauNom = scanner.nextLine();
@@ -388,7 +386,7 @@ public class Systeme {
             System.out.println("5. Trouver des utilisateurs ");
             System.out.println("6. Voir le profil d'un utilisateur ");
             System.out.println("7. Voir le profil d'un fournisseur ");
-            System.out.println("8. S'incrire à une activité");
+            System.out.println("8. S'inscrire à une activité");
             System.out.println("9. Voir l'état de mes robots ");
             System.out.println("10. Voir les métriques (non implementé) ");
             System.out.println("11. Afficher interets");
@@ -401,17 +399,8 @@ public class Systeme {
 
             System.out.println("0. Se déconnecter");
 
-            int choice ;
-            try {
-                choice = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Veuillez entrer un nombre valide.");
-                scanner.next(); // Clear the invalid input
-                continue;
-            }
-            scanner.nextLine(); // Consomme la nouvelle ligne
-
-            switch (choice) {
+            int choix = Validation.validerChoix(16);
+            switch (choix) {
                 case 1:
                     System.out.println(utilisateur);
                     break;
@@ -582,10 +571,8 @@ public class Systeme {
             System.out.println("5. Autres fonctionnalités ");
             System.out.println("0. Se déconnecter");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consomme la nouvelle ligne
-
-            switch (choice) {
+            int choix = Validation.validerChoix(5);
+            switch (choix) {
                 case 1:
                     System.out.println(fournisseur);
                     break;

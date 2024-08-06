@@ -170,17 +170,10 @@ public class RobotixMain {
 
             System.out.print("Choisissez une option: ");
 
-            int choice;
-            try {
-                choice = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Veuillez entrer un nombre valide.");
-                scanner.next(); // Clear the invalid input
-                continue;
-            }
-            scanner.nextLine();
 
-            switch (choice) {
+            int entrer = Validation.validerChoix(3);
+
+            switch (entrer) {
                 // ------------------------------------------------------------------- S'INSCRIRE EN TANT QU'UTILISATEUR
                 case 1 -> {
                     System.out.println("-- FORMULAIRE D'INSCRIPTION UTILISATEUR --");
@@ -199,7 +192,7 @@ public class RobotixMain {
                     String email = Commande.ajouterEmailUnique(scanner, liste_utilisateur);
 
                     System.out.println("entrer votre numéro de téléphone : ");
-                    String telephone = scanner.nextLine();
+                    String telephone = Validation.validerNumero(scanner.nextLine());
 
                     systeme.afficherInterets();
 
@@ -212,7 +205,8 @@ public class RobotixMain {
                     System.out.println("0. Non");
                     System.out.println("1. Oui");
 
-                    int choixCompagnie = scanner.nextInt();
+
+                    int choixCompagnie = Validation.validerChoix(1);
                     switch (choixCompagnie) {
                         case 0:
                             Utilisateur user = new Utilisateur(pseudo, nom, prenom, mot_de_passe, email,
@@ -252,10 +246,10 @@ public class RobotixMain {
                     String adresse = scanner.nextLine();
 
                     System.out.println("entrez votre adresse courriel : ");
-                    String email_fournisseur = scanner.nextLine();
+                    String email_fournisseur = Validation.validerEmail(scanner.nextLine());
 
                     System.out.println("entrer votre numéro de téléphone : ");
-                    String telephone_fournisseur = scanner.nextLine();
+                    String telephone_fournisseur = Validation.validerNumero(scanner.nextLine());
 
                     System.out.println("entrez la capacité maximale : ");
                     int capacite_maximale = scanner.nextInt();

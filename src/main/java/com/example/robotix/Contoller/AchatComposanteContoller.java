@@ -1,4 +1,4 @@
-package com.example.robotix;
+package com.example.robotix.Contoller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -12,7 +12,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.stage.Stage;
 
-public class ActiviteController {
+public class AchatComposanteContoller {
     // -------------------------------------------------------------------------------------------------------- MENU BAR
     @FXML
     private Button quitButton;
@@ -83,7 +83,6 @@ public class ActiviteController {
 
 
     // --------
-
 
 
 

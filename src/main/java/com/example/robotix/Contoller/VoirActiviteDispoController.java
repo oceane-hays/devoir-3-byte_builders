@@ -1,4 +1,4 @@
-package com.example.robotix;
+package com.example.robotix.Contoller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

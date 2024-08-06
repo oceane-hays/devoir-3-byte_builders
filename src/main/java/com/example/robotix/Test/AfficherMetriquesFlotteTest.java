@@ -1,5 +1,7 @@
-package com.example.robotix;
+package com.example.robotix.Test;
 
+import com.example.robotix.AfficherMetriquesFlotte;
+import com.example.robotix.Robot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

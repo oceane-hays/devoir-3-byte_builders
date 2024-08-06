@@ -25,7 +25,7 @@ public class Commande {
         String pseudo = "";
 
         while (cherchePseudo) {
-            pseudo = scanner.nextLine();
+            pseudo = Validation.validerPseudo(scanner.nextLine());
             boolean notInList = true;
 
             for (Map.Entry<String, Utilisateur> pseud : liste_utilisateur.entrySet()) {
@@ -51,7 +51,7 @@ public class Commande {
         String email = "";
 
         while (chercheEmail) {
-            email = scanner.nextLine();
+            email = Validation.validerEmail(scanner.nextLine());
             boolean notInList = true;
 
             for (Map.Entry<String, Utilisateur> mail : liste_utilisateur.entrySet()) {

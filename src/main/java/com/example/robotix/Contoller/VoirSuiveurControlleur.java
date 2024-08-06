@@ -1,17 +1,18 @@
-package com.example.robotix;
+package com.example.robotix.Contoller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.stage.Stage;
 
-public class ProfilController {
+public class VoirSuiveurControlleur {
     // -------------------------------------------------------------------------------------------------------- MENU BAR
     @FXML
     private Button quitButton;
@@ -35,7 +36,10 @@ public class ProfilController {
     private MenuItem gestionInteret;
 
 
-    // -------------------------------------------------------------------------------------------------------- MENU BAR
+    @FXML
+    private void quitButtonAction(ActionEvent event) {
+        Platform.exit();
+    }
 
     @FXML
     private void rechercheAction(ActionEvent event) throws Exception {
@@ -77,30 +81,11 @@ public class ProfilController {
         handleButtonAction(event,"voirInteret.fxml");
     }
 
-    @FXML
-    private void quitButtonAction(ActionEvent event) {
-        Platform.exit();
-    }
+
+    // --------
 
 
-    // ---------------------------------------------------------------------------------------------------------- PROFIL
-    @FXML
-    private Label nomUser;
-    @FXML
-    private Label phoneUser;
-    @FXML
-    private Label emailUser;
-    @FXML
-    private Label mdpUser;
-    @FXML
-    private Label compagnieUser;
-    @FXML
-    private Button modifierProfil;
 
-
-    private void modifierProfilAction(ActionEvent event) throws Exception {
-        handleButtonAction(event,"modifierProfil.fxml");
-    }
 
     private void handleButtonAction(ActionEvent event, String pathNam) throws Exception {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
