@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport de Projet - Robotix</title>
+    <style>
+        body {
+            background-color: #1c1c1c;
+            font-family: 'Roboto', sans-serif;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #303030;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #5a5a5a;
+        }
+        h1 {
+            color: #00ffcc;
+            text-shadow: 2px 2px 4px #000000;
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        h2, h3, h4 {
+            color: #00ffcc;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        h2 {
+            background-color: rgba(0, 255, 204, 0.3);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        p {
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+        a {
+            color: #00ffcc;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .diagram {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .task-distribution {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .task-member {
+            background-color: #2e2e2e;
+            border: 2px solid #5a5a5a;
+            border-radius: 10px;
+            padding: 15px;
+            width: 45%;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .task-member h4 {
+            color: #00e676;
+        }
+        footer {
+            background-color: #303030;
+            padding: 10px;
+            text-align: center;
+            border-top: 2px solid #5a5a5a;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        table {
+            border: 2px solid #00ffcc;
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            background-color: #333333;
+        }
+        th, td {
+            border: 1px solid #00ffcc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #262626;
+        }
+        td {
+            background-color: #404040;
+        }
+        .first_col {
+            border-right: 2px double #00ffcc;
+        }
+        #taskTable {
+            width: 70%;
+        }
+        #taskTable thead {
+            background-color: #262626;
+        }
+        hr {
+            border: 1px solid #00ffcc;
+        }
+        .term {
+            font-weight: bold;
+            color: #00e676;
+        }
+        .description {
+            margin-left: 20px;
+            color: #cccccc;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        button {
+            background-color: #00ffcc;
+            border: none;
+            color: #1c1c1c;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1em;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #00ccb3;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #00ffcc;
+            border-radius: 5px;
+            background-color: #262626;
+            color: #e0e0e0;
+        }
+        input:focus, textarea:focus {
+            border-color: #00ccb3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Rapport de Projet - Robotix</h1>
+    </header>
+    <div class="container">
+        <h2>Identification de l'équipe</h2>
+        <p>bytebuilders.</p>
+
+        <h2>Distribution des Tâches</h2>
+        <div class="task-distribution">
+            <div class="task-member">
+                <h4>Lea Hemidj</h4>
+                <p>Responsable du rapport readme et diagrammes</p>
+                <p><strong>Matricule:</strong> 20241318</p>
+                <p><strong>Courriel:</strong> lea.hemidj@umontreal.ca</p>
+                <p><strong>Temps mis:</strong> 35 heures</p>
+            </div>
+            <div class="task-member">
+                <h4>Sophie Bernard</h4>
+                <p>Diagrammes</p>
+                <p><strong>Matricule:</strong> 20268160</p>
+                <p><strong>Courriel:</strong> sophie.bernard-doucet@umontreal.ca</p>
+                <p><strong>Temps mis:</strong> 35 heures</p>
+            </div>
+            <div class="task-member">
+                <h4>Insafe Kibboua</h4>
+                <p>Code</p>
+                <p><strong>Matricule:</strong> 20250710</p>
+                <p><strong>Courriel:</strong> insafe.kibboua@umontreal.ca</p>
+                <p><strong>Temps mis:</strong> 35 heures</p>
+            </div>
+            <div class="task-member">
+                <h4>Océane Hays</h4>
+                <p>Chargée de code</p>
+                <p><strong>Matricule:</strong> 20240742</p>
+                <p><strong>Courriel:</strong> hays.oceane@umontreal.ca</p>
+                <p><strong>Temps mis:</strong> 35 heures</p>
+            </div>
+        </div>
+
+        <h2>Hypothèses</h2>
+        <p>Liste des hypothèses prises en compte pour la réalisation du projet.</p>
+        <ol>
+            <li>Les utilisateurs de Robotix sont familiarisés avec les concepts de base de la robotique et de l'informatique.</li>
+            <li>Le système sera utilisé principalement par des entreprises et des institutions ayant une flotte de robots à gérer.</li>
+            <li>Les fournisseurs de composants pour robots fourniront des numéros de série et des informations précises sur chaque composante.</li>
+            <li>Les robots sont équipés de capteurs et de composants compatibles avec les spécifications du système Robotix.</li>
+            <li>Le logiciel Robotix sera utilisé dans des environnements stables avec une connexion Internet fiable pour assurer la communication continue avec les robots.</li>
+            <li>Les utilisateurs auront accès à des dispositifs modernes (ordinateurs, tablettes, smartphones) pour interagir avec le système Robotix.</li>
+            <li>Le système Robotix est capable de gérer plusieurs utilisateurs et robots simultanément sans compromettre la performance.</li>
+            <li>Les informations et les données échangées entre les utilisateurs et les robots seront sécurisées et protégées contre tout accès non autorisé.</li>
+            <li>Le support technique sera disponible pour aider les utilisateurs en cas de problèmes ou de questions concernant le système Robotix.</li>
+            <li>Les mises à jour du logiciel et des composants matériels seront effectuées régulièrement pour assurer la compatibilité et la performance optimale du système.</li>
+        </ol>
+
+        <h2>Exigences et Analyse</h2>
+        <h3>Glossaire</h3>
+        <div>
+            <p class="term">Utilisateur</p>
+            <p class="description">Personne qui utilise le logiciel Robotix pour gérer des robots et des tâches associées.</p>
+    
+            <p class="term">Fournisseur</p>
+            <p class="description">Entreprise ou individu fournissant des composants ou des services pour les robots.</p>
+    
+            <p class="term">Robot</p>
+            <p class="description">Machine programmable effectuée pour exécuter diverses tâches autonomes ou semi-autonomes.</p>
+    
+            <p class="term">Composante</p>
+            <p class="description">Partie individuelle d'un robot, telle qu'un moteur, une roue, ou un capteur.</p>
+    
+            <p class="term">Tâche</p>
+            <p class="description">Ensemble d'actions assignées à un robot pour exécution.</p>
+    
+            <p class="term">Action</p>
+            <p class="description">Commande ou série de commandes qu'un robot doit exécuter.</p>
+    
+            <p class="term">Flotte</p>
+            <p class="description">Groupe de robots gérés par un utilisateur ou une entreprise.</p>
+    
+            <p class="term">État</p>
+            <p class="description">Condition actuelle d'un robot, incluant sa position, sa vitesse, et son niveau de batterie.</p>
+    
+            <p class="term">Métriques</p>
+            <p class="description">Indicateurs de performance utilisés pour évaluer l'efficacité des robots.</p>
+    
+            <p class="term">Connexion</p>
+            <p class="description">Lien de communication entre le logiciel Robotix et les robots.</p>
+    
+            <p class="term">Enregistrement</p>
+            <p class="description">Processus d'ajout d'un nouveau robot au système Robotix.</p>
+    
+            <p class="term">Commande</p>
+            <p class="description">Instruction envoyée à un robot pour qu'il exécute une action spécifique.</p>
+    
+            <p class="term">Maintenance</p>
+            <p class="description">Ensemble d'activités visant à assurer le bon fonctionnement des robots.</p>
+    
+            <p class="term">Validation</p>
+            <p class="description">Processus de vérification des informations saisies par l'utilisateur.</p>
+    
+            <p class="term">Notification</p>
+            <p class="description">Message informant l'utilisateur d'un événement ou d'une condition nécessitant une attention.</p>
+    
+            <p class="term">Profil</p>
+            <p class="description">Informations personnelles et professionnelles d'un utilisateur ou d'un fournisseur dans le système.</p>
+    
+            <p class="term">Formulaire</p>
+            <p class="description">Interface de saisie de données utilisée par l'utilisateur pour entrer des informations.</p>
+    
+            <p class="term">Erreur</p>
+            <p class="description">Problème ou défaut empêchant un robot ou le système de fonctionner correctement.</p>
+    
+            <p class="term">Configuration</p>
+            <p class="description">Ensemble des paramètres et des options définissant le comportement d'un robot.</p>
+        </div>
+
+        <h3>Diagramme de cas d'utilisation</h3>
+        <div class="diagram">
+            <img src="exigences/diagramme_cas_utilisation.svg" alt="Diagramme de cas d'utilisation">
+        </div>
+
+        <h3>Diagrammes d'activités</h3>
+        <div class="diagram">
+            <h4>Diagramme d'activités principal</h4>
+            <img src="analyse/diagramme_activites_main.svg" alt="Diagramme d'activités principal">
+        </div>
+        <div class="diagram">
+            <h4>Diagramme d'activités 1</h4>
+            <img src="analyse/diagramme_activites_1.svg" alt="Diagramme d'activités pour ajouter/mettre à jour/supprimer une action">
+        </div>
+        <div class="diagram">
+            <h4>Diagramme d'activités 2</h4>
+            <img src="analyse/diagramme_activites_2.svg" alt="Diagramme d'activités pour ajouter/mettre à jour/supprimer une tâche">
+        </div>
+        <div class="diagram">
+            <h4>Diagramme d'activités 3</h4>
+            <img src="analyse/diagramme_activites_3.svg" alt="Diagramme d'activités pour l'inscription à une activité">
+        </div>
+        <div class="diagram">
+            <h4>Diagramme d'activités 4</h4>
+            <img src="analyse/diagramme_activites_4.svg" alt="Diagramme d'activités pour enregistrer un robot">
+        </div>
+        <div class="diagram">
+            <h4>Diagramme d'activités 5</h4>
+            <img src="analyse/diagramme_activites_5.svg" alt="Diagramme d'activités pour acheter une composante">
+        </div>
+
+        <h3>Analyse des besoins matériels et conceptuels</h3>
+        <p>Exigences matérielles:</p>
+        <ul>
+            <li>Système d'exploitation: Windows, macOS ou Linux</li>
+            <li>Java: Version 8 ou supérieure</li>
+            <li>Maven: Version 3.6 ou supérieure</li>
+            <li>RAM: 2 Go minimum</li>
+            <li>Stockage: 100 Mo d'espace libre</li>
+            <li>Connexion Internet fiable</li>
+        </ul>
+        <p>Exigences conceptuelles:</p>
+        <ul>
+            <li>Gestion des utilisateurs et des fournisseurs</li>
+            <li>Enregistrement et gestion des robots</li>
+            <li>Création et assignation de tâches et d'actions</li>
+            <li>Suivi des métriques et des alertes</li>
+            <li>Interaction avec d'autres systèmes via des API</li>
+            <li>Interface utilisateur conviviale</li>
+        </ul>
+
+        <h2>Conception (révisée)</h2>
+        <h3>Diagramme de classe</h3>
+        <div class="diagram">
+            <img src="conception/diagramme_classe.svg" alt="Diagramme de classe">
+        </div>
+        <h3>Diagrammes de séquence</h3>
+        <div class="diagram">
+            <h4>Diagramme de séquence 1</h4>
+            <img src="conception/diagramme_sequence_1.svg" alt="Diagramme de séquence pour ajouter une action">
+        </div>
+        <div class="diagram">
+            <h4>Diagramme de séquence 2</h4>
+            <img src="conception/diagramme_sequence_2.svg" alt="Diagramme de séquence pour ajouter une tâche">
+        </div>
+        <div class="diagram">
+            <h4>Diagramme de séquence 3</h4>
+            <img src="conception/diagramme_sequence_3.svg" alt="Diagramme de séquence pour l'inscription à une activité">
+        </div>
+        <div class="diagram">
+            <h4>Diagramme de séquence 4</h4>
+            <img src="conception/diagramme_sequence_4.svg" alt="Diagramme de séquence pour enregistrer un robot">
+        </div>
+        <div class="diagram">
+            <h4>Diagramme de séquence 5</h4>
+            <img src="conception/diagramme_sequence_5.svg" alt="Diagramme de séquence pour acheter une composante">
+        </div>
+
+        <h2>Application</h2>
+        <p><a href="[lien-vers-executable]">Télécharger l'application</a></p>
+        <p><a href="[lien-vers-documentation]">Voir la documentation JavaDoc</a></p>
+
+        <h2>Tests</h2>
+        <p>Bilan des tests</p>
+        <div class="diagram">
+            <img src="[chemin-vers-capture-tests]" alt="Capture d'écran des tests JUnit réussis">
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Robotix Project</p>
+    </footer>
+</body>
+</html>
