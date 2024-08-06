@@ -75,4 +75,22 @@ public class Fournisseur {
     public HashMap<Composante, Integer> getComposantes() {
         return composantes;
     }
+
+
+
+    public String fournisseur() {
+        return "Fournisseur : " + '\n' +
+                "Compagnie : " + nom_compagnie + '\n' +
+                "Types : " + composantes.entrySet() + '\n';
+    }
+
+    public String toStringFournisseur() {
+        return "Fournisseur : " + '\n' +
+                "Compagnie : " + nom_compagnie + '\n' +
+                "adresse : " + adresse + '\n' +
+                "email : " + courriel + '\n' +
+                "capacite de fabrication : " + capacite_fabrication  + '\n' +
+                "telephone : " + telephone + '\n' +
+                "composantes : " + composantes + '\n';
+    }
 }

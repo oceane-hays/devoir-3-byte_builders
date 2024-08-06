@@ -33,12 +33,11 @@ public class Composante {
 
     @Override
     public String toString() {
-        return "Composante{" +
-                "nom='" + nom + '\'' +
-                ", type='" + type + '\'' +
-                ", description='" + description + '\'' +
-                ", prix=" + prix +
-                '}';
+        return "Composante : " + '\n' +
+                "nom : " + nom + '\n' +
+                "type : " + type + '\n' +
+                "description : " + description + '\n' +
+                "prix : " + prix  + '\n';
     }
 }
 

@@ -60,7 +60,7 @@ public class Systeme {
 
     public void afficherFournisseurs() {
         for (Map.Entry<String, Fournisseur> entry : liste_fournisseur.entrySet()) {
-            System.out.println(entry.getValue());
+            System.out.println(entry.getValue().fournisseur());
         }
     }
 
@@ -171,7 +171,7 @@ public class Systeme {
                 String nomFournisseur = scanner.nextLine();
                 Fournisseur fournisseur = rechercherFournisseur(nomFournisseur);
                 if (fournisseur != null) {
-                    System.out.println(fournisseur);
+                    System.out.println(fournisseur.toStringFournisseur());
                 } else {
                     System.out.println("Fournisseur non trouvé.");
                 }
@@ -184,7 +184,7 @@ public class Systeme {
                 String adresseFournisseur = scanner.nextLine();
                 Fournisseur fournisseurParAdresse = rechercherFournisseurParAdresse(adresseFournisseur);
                 if (fournisseurParAdresse != null) {
-                    System.out.println(fournisseurParAdresse);
+                    System.out.println(fournisseurParAdresse.toStringFournisseur());
                 } else {
                     System.out.println("Aucun fournisseur trouvé.");
                 }
@@ -192,13 +192,14 @@ public class Systeme {
 
                 
             case 4:
-
+                afficherFournisseurs();
                 System.out.println("Entrez le type de composante du fournisseur à rechercher : ");
 
                 String type = scanner.nextLine();
                 ArrayList<Fournisseur> fournisseurParType = rechercherFournisseurParTypeComposante(type);
                 if (fournisseurParType != null) {
-                    System.out.println(fournisseurParType);
+                    for (Fournisseur seller : fournisseurParType)
+                        System.out.println(seller.toStringFournisseur());
                 } else {
                     System.out.println("Fournisseur non trouvé.");
                 }
