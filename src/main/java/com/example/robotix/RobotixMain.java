@@ -40,62 +40,62 @@ public class RobotixMain {
         Composante haut_parleurs = new Composante("haut-parleurs", "externe", "optionel", 299);
 
         Utilisateur john = new Utilisateur("johndoe", "Doe", "John", "securepassword",
-                "johndoe@example.com", "+1234567890", "Robotix Inc.",
+                "johndoe@example.com", "+1234567890", "Robotix Inc.", true,
                 Commande.creerListeInterets(liste_interet, 1,3,4),
                 Commande.creerListeFollowers(liste_utilisateur, ""),
                 Commande.creerListeActivite(liste_activites, 1,2,3));
         // -- UTILISATEURS --
 
         Utilisateur jane = new Utilisateur("jane_smith", "Smith", "Jane", "password2",
-                "jane.smith@example.com", "+1987654321", "non renseigné",
+                "jane.smith@example.com", "+1987654321", "non renseigné", true,
                 Commande.creerListeInterets(liste_interet, 4, 5, 6),
                 Commande.creerListeFollowers(liste_utilisateur, ""),
                 Commande.creerListeActivite(liste_activites, 2,4));
 
         Utilisateur mike = new Utilisateur("mike_jones", "Jones", "Mike", "password3",
-                "mike.jones@example.com", "+1765432109", "Food Delights",
+                "mike.jones@example.com", "+1765432109", "Food Delights", true,
                 Commande.creerListeInterets(liste_interet, 7, 8, 9),
                 Commande.creerListeFollowers(liste_utilisateur, ""),
                 Commande.creerListeActivite(liste_activites, 1,5));
 
         Utilisateur emma = new Utilisateur("emma_brown", "Brown", "Emma", "password4",
-                "emma.brown@example.com", "+1654321876", "non renseigné",
+                "emma.brown@example.com", "+1654321876", "non renseigné", true,
                 Commande.creerListeInterets(liste_interet, 10, 1, 2),
                 Commande.creerListeFollowers(liste_utilisateur, ""),
                 Commande.creerListeActivite(liste_activites, 1,2));
 
         Utilisateur chris = new Utilisateur("chris_green", "Green", "Chris", "password5",
-                "chris.green@example.com", "+1432187654", "Music Groove",
+                "chris.green@example.com", "+1432187654", "Music Groove", true,
                 Commande.creerListeInterets(liste_interet, 3, 4, 5),
                 Commande.creerListeFollowers(liste_utilisateur, ""),
                 Commande.creerListeActivite(liste_activites, 1));
 
         Utilisateur lisa = new Utilisateur("lisa_white", "White", "Lisa", "password6",
-                "lisa.white@example.com", "+1987654321", "non renseigné",
+                "lisa.white@example.com", "+1987654321", "non renseigné", true,
                 Commande.creerListeInterets(liste_interet, 6, 7, 8),
                 Commande.creerListeFollowers(liste_utilisateur, ""),
                 Commande.creerListeActivite(liste_activites, 1,2,3,4));
 
         Utilisateur kevin = new Utilisateur("kevin_black", "Black", "Kevin", "password7",
-                "kevin.black@example.com", "+1543219876", "Movie Magic",
+                "kevin.black@example.com", "+1543219876", "Movie Magic", true,
                 Commande.creerListeInterets(liste_interet, 9, 10, 1),
                 Commande.creerListeFollowers(liste_utilisateur, ""),
                 Commande.creerListeActivite(liste_activites, 2,5));
 
         Utilisateur sarah = new Utilisateur("sarah_grey", "Grey", "Sarah", "password8",
-                "sarah.grey@example.com", "+1321897654", "non renseigné",
+                "sarah.grey@example.com", "+1321897654", "non renseigné", false,
                 Commande.creerListeInterets(liste_interet, 2, 3, 4),
                 Commande.creerListeFollowers(liste_utilisateur, ""),
                 Commande.creerListeActivite(liste_activites, 3,1));
 
         Utilisateur alex = new Utilisateur("alex_baker", "Baker", "Alex", "password9",
-                "alex.baker@example.com", "+1123456789", "Bookworms",
+                "alex.baker@example.com", "+1123456789", "Bookworms", false,
                 Commande.creerListeInterets(liste_interet,5, 6, 7),
                 Commande.creerListeFollowers(liste_utilisateur, ""),
                 Commande.creerListeActivite(liste_activites, 3));
 
         Utilisateur emily = new Utilisateur("emily_king", "King", "Emily", "password10",
-                "emily.king@example.com", "+1987654321", "non renseigné",
+                "emily.king@example.com", "+1987654321", "non renseigné", false,
                 Commande.creerListeInterets(liste_interet, 8, 9, 10),
                 Commande.creerListeFollowers(liste_utilisateur, ""),
                 Commande.creerListeActivite(liste_activites, 4,5));
@@ -201,18 +201,34 @@ public class RobotixMain {
                     ArrayList<Utilisateur> followers = new ArrayList<Utilisateur>();
                     ArrayList<Activite> activites = new ArrayList<Activite>();
 
-                    System.out.println("Souhaitez-vous ajouter le nom de votre compagnie ? ");
+                    System.out.println("Souhaitez-vous acceptez les notification par email ? ");
                     System.out.println("0. Non");
                     System.out.println("1. Oui");
 
+                    boolean notification = false;
+                    int choixNotification = Validation.validerChoix(1);
+                    switch (choixNotification) {
+                        case 0:
+                            notification = false;
+                            break;
+
+                        case 1 :
+                            notification = true;
+                            break;
+                    }
+
+                    System.out.println("Souhaitez-vous ajouter le nom de votre compagnie ? ");
+                    System.out.println("0. Non");
+                    System.out.println("1. Oui");
 
                     int choixCompagnie = Validation.validerChoix(1);
                     switch (choixCompagnie) {
                         case 0:
                             Utilisateur user = new Utilisateur(pseudo, nom, prenom, mot_de_passe, email,
-                                    telephone, "aucune", interet_utilisateur, followers, activites);
+                                    telephone, "aucune", notification, interet_utilisateur, followers, activites);
                             System.out.println("enregistrement...");
                             systeme.ajouterUtilisateur(pseudo, user);
+                            System.out.println("Votre inscription a été pris en compte. Vous recevrez un mail de confirmation sous 24h !");
                             break;
 
                         case 1:
@@ -221,15 +237,12 @@ public class RobotixMain {
                             String nom_compagnie = scanner.nextLine();
 
                             Utilisateur user_compagnie = new Utilisateur(pseudo, nom, prenom, mot_de_passe, email,
-                                    telephone, nom_compagnie, interet_utilisateur, followers, activites);
+                                    telephone, nom_compagnie,notification,interet_utilisateur, followers, activites);
                             System.out.println("enregistrement...");
                             systeme.ajouterUtilisateur(pseudo, user_compagnie);
                             System.out.println("Votre inscription a été pris en compte. Vous recevrez un mail de confirmation sous 24h !");
 
                             break;
-
-                        default:
-                            System.out.println("Choix invalide.");
                     }
                 }
 

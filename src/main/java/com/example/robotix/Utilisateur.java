@@ -11,16 +11,17 @@ public class Utilisateur {
         private String courriel;
         private String telephone;
         private String compagnie;
+        private boolean emailNotificationsEnabled;
         private ArrayList<Interet> interet;
         public ArrayList<Utilisateur> followers;
+
         public ArrayList<Activite> activite;
         public ArrayList<Robot> liste_robot = new ArrayList<Robot>();
-        private String userId;
-        private String email;
-        private boolean emailNotificationsEnabled;
+        public ArrayList<Notification> notifications = new ArrayList<Notification>();
+
 
         public Utilisateur(String identifiant, String nom, String prenom, String mot_de_passe,
-                           String courriel, String telephone, String compagnie,
+                           String courriel, String telephone, String compagnie, boolean emailNotificationsEnabled,
                            ArrayList<Interet> interet, ArrayList<Utilisateur> followers,
                            ArrayList<Activite> activite) {
 
@@ -31,101 +32,73 @@ public class Utilisateur {
             this.courriel = courriel;
             this.telephone = telephone;
             this.compagnie = compagnie;
+            this.emailNotificationsEnabled = emailNotificationsEnabled;
             this.interet = interet;
             this.followers = followers;
             this.activite = activite;
         }
 
-        public Utilisateur(String userId, String email, boolean emailNotificationsEnabled) {
-            this.userId = userId;
-            this.email = email;
-            this.emailNotificationsEnabled = emailNotificationsEnabled;
-        }
 
 
-    public String getIdentifiant() {
-        return identifiant;
-    }
+        public String getIdentifiant() { return identifiant;}
 
-    public String getNom() {
-        return nom;
-    }
+        public String getNom() { return nom;}
 
-    public String getPrenom() {
-        return prenom;
-    }
+        public String getPrenom() { return prenom;}
 
-    public String getMotDePasse() {
-        return mot_de_passe;
-    }
+        public String getMotDePasse() {return mot_de_passe;}
 
-    public String getCourriel() {
-        return courriel;
-    }
+        public String getCourriel() { return courriel;}
 
-    public String getTelephone() {
-        return telephone;
-    }
+        public String getTelephone() { return telephone;}
 
-    public ArrayList<Interet> getInteret() {
-        return interet;
-    }
+        public ArrayList<Interet> getInteret() { return interet;}
 
-    public ArrayList<Utilisateur> getFollowers() {
-        return followers;
-    }
+        public ArrayList<Utilisateur> getFollowers() { return followers;}
 
-    public ArrayList<Activite> getActivite() {
-        return activite;
-    }
+        public ArrayList<Activite> getActivite() { return activite;}
 
-    public ArrayList<Robot> getListeRobot() {return liste_robot;}
+        public ArrayList<Robot> getListeRobot() {return liste_robot;}
 
-    // TODO public void addFollowers(utilisteur Utiliseur)
+        public ArrayList<Notification> getNotifications() { return notifications;}
 
-    public void removeFollowers(String pseudo) {
-        for (Utilisateur user : followers) {
-            if (user.getFollowers().equals(pseudo)) {
-                followers.remove(user);
-                break;
+        public void setNom(String nom) { this.nom = nom;}
+
+        public void setPrenom(String prenom) {this.prenom = prenom;}
+
+        public void setMotDePasse(String mot_de_passe) { this.mot_de_passe = mot_de_passe;}
+
+        public void setCourriel(String courriel) {this.courriel = courriel;}
+
+        public void setTelephone(String telephone) {this.telephone = telephone;}
+
+        public void setInteret(ArrayList<Interet> interet) {this.interet = interet;}
+
+
+        public void removeFollowers(String pseudo) {
+            for (Utilisateur user : followers) {
+                if (user.getFollowers().equals(pseudo)) {
+                    followers.remove(user);
+                    break;
+                }
             }
         }
-    }
 
-    public void suivreUtilisateur(String pseudo) {
-        for (Utilisateur user : followers) {
-            if (user.getFollowers().equals(pseudo)) {
-                System.out.println("Vous suivez déjà cet utilisateur.");
-                break;
-            } else {
-                followers.add(user);
+        public void suivreUtilisateur(String pseudo) {
+            for (Utilisateur user : followers) {
+                if (user.getFollowers().equals(pseudo)) {
+                    System.out.println("Vous suivez déjà cet utilisateur.");
+                    break;
+                } else {
+                    followers.add(user);
+                }
             }
         }
-    }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+        public void ajouterRobot(Robot robot) {liste_robot.add(robot);}
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
+        public void supprimerRobot(Robot robot) {liste_robot.remove(robot);}
 
-    public void setMotDePasse(String mot_de_passe) {
-        this.mot_de_passe = mot_de_passe;
-    }
-
-    public void setCourriel(String courriel) {
-        this.courriel = courriel;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public void setInteret(ArrayList<Interet> interet) {
-        this.interet = interet;
-    }
 
 
 
@@ -180,31 +153,7 @@ public class Utilisateur {
         return  "utilisateur : " + followers + '\n' ;
     }
 
-    public void ajouterRobot(Robot robot) {
-            liste_robot.add(robot);
-    }
 
-    public void supprimerRobot(Robot robot) {
-        liste_robot.remove(robot);
-    }
-
-
-    // Getters and Setters
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public boolean isEmailNotificationsEnabled() {
         return emailNotificationsEnabled;
@@ -213,4 +162,7 @@ public class Utilisateur {
     public void setEmailNotificationsEnabled(boolean emailNotificationsEnabled) {
         this.emailNotificationsEnabled = emailNotificationsEnabled;
     }
+
+
+
 }
