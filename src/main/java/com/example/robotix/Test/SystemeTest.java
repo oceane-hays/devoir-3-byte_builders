@@ -1,5 +1,6 @@
-package com.example.robotix;
+package com.example.robotix.Test;
 
+import com.example.robotix.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -26,7 +26,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch();
+        //launch();
         executeCommandLineSystem(args);
     }
 
@@ -34,15 +34,6 @@ public class Main extends Application {
         // Ajoutez votre code de système en ligne de commande ici
         // Par exemple, si vous avez une classe CommandLineSystem avec une méthode statique run :
         RobotixMain.run(args);
-
-        if (args.length == 0) {
-            Notification.showErrorNotification("Error", "No command line arguments provided!");
-        } else {
-            // Process the arguments and potentially show a success notification
-            RobotixMain.run(args);
-            Notification.showNotification("Success", "Command executed successfully!");
-        }
     }
-
 
 }
