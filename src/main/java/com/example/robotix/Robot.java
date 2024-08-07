@@ -9,15 +9,13 @@ public class Robot {
 
     private String numSerie; // numéro de série
     private String nom;      // nom du robot
+    private String position; // position du robot
+    private int vitesse;     // vitesse du robot
     private String type;     // type de robot
-
     private int niveauBatterie;
     private int consommationCPU;
-
+    private int consommationMemoire;
     private ArrayList<Composante> liste_composante = new ArrayList<>();
-
-    // Default constructor
-    public Robot() {}
 
     // Parameterized constructor with Jackson annotations
     @JsonCreator
@@ -27,10 +25,16 @@ public class Robot {
             @JsonProperty("type") String type,
             @JsonProperty("niveauBatterie") int niveauBatterie,
             @JsonProperty("consommationCPU") int consommationCPU,
+            @JsonProperty("consommationMemoire") int consommationMemoire,
+            @JsonProperty("vitesse") int vitesse,
+            @JsonProperty("position") String position,
             @JsonProperty("liste_composante") ArrayList<Composante> liste_composante) {
         this.numSerie = numSerie;
         this.nom = nom;
         this.type = type;
+        this.position = position;
+        this.vitesse = vitesse;
+        this.consommationMemoire = consommationMemoire;
         this.niveauBatterie = niveauBatterie;
         this.consommationCPU = consommationCPU;
         this.liste_composante = liste_composante;
@@ -52,6 +56,16 @@ public class Robot {
         return type;
     }
 
+    @JsonProperty("position")
+    public String getPosition() {
+        return position;
+    }
+
+    @JsonProperty("vitesse")
+    public int getVitesse() {
+        return vitesse;
+    }
+
     @JsonProperty("niveauBatterie")
     public int getNiveauBatterie() {
         return niveauBatterie;
@@ -60,6 +74,11 @@ public class Robot {
     @JsonProperty("consommationCPU")
     public int getConsommationCPU() {
         return consommationCPU;
+    }
+
+    @JsonProperty("consommationMemoire")
+    public int getConsommationMemoire() {
+        return consommationMemoire;
     }
 
     @JsonProperty("liste_composante")
@@ -83,6 +102,16 @@ public class Robot {
         this.type = type;
     }
 
+    @JsonProperty("position")
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    @JsonProperty("vitesse")
+    public void setVitesse(int vitesse) {
+        this.vitesse = vitesse;
+    }
+
     @JsonProperty("niveauBatterie")
     public void setNiveauBatterie(int niveauBatterie) {
         this.niveauBatterie = niveauBatterie;
@@ -93,11 +122,15 @@ public class Robot {
         this.consommationCPU = consommationCPU;
     }
 
+    @JsonProperty("consommationMemoire")
+    public void setConsommationMemoire(int consommationMemoire) {
+        this.consommationMemoire = consommationMemoire;
+    }
+
     @JsonProperty("liste_composante")
     public void setComposantes(ArrayList<Composante> liste_composante) {
         this.liste_composante = liste_composante;
     }
-
 
     @Override
     public String toString() {
@@ -106,8 +139,11 @@ public class Robot {
                 "numSerie='" + numSerie + '\'' +
                 ", nom='" + nom + '\'' +
                 ", type='" + type + '\'' +
+                ", position='" + position + '\'' +
+                ", vitesse=" + vitesse +
                 ", niveauBatterie=" + niveauBatterie +
                 ", consommationCPU=" + consommationCPU +
+                ", consommationMemoire=" + consommationMemoire +
                 ", liste_composante=\n" + liste_composante.toString() +
                 '}';
     }
