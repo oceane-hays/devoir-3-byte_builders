@@ -224,29 +224,50 @@ public class Systeme {
     }
 
     public void gestionSuiveurs(Scanner scanner, Utilisateur utilisateur) {
-        System.out.println("Voici la liste des utilisateurs qui vous suivent : ");
-        utilisateur.toStringFollowers();
-        System.out.println("Souhaitez vous supprimer un utilisateur : ");
-        System.out.println("1. Oui");
-        System.out.println("2. Non");
-        System.out.println("0. QUITTER");
+        // Check if the followers list is null or empty
+        if (utilisateur.getFollowers() == null || utilisateur.getFollowers().isEmpty()) {
+            System.out.println("Vous n'êtes suivi par personne.");
+        } else {
+            // Print the list of followers
+            System.out.println("Voici la liste des utilisateurs qui vous suivent : ");
+            System.out.println(utilisateur.toStringFollowers());
 
-        int choix = Validation.validerChoix(2);
-        switch (choix) {
+            // Present choices to the user
+            System.out.println("Souhaitez-vous supprimer un utilisateur : ");
+            System.out.println("1. Oui");
+            System.out.println("2. Non");
+            System.out.println("0. QUITTER");
 
-            case 0:
-                break;
+            // Validate user choice
+            int choix = Validation.validerChoix(2);
 
-            case 1: // TODO si le nom entré n'existe pas dans la liste ... utiliser recheUser
-                System.out.println("Entrez le pseudo de l'utilisateur à supprimer : ");
-                String pseudoFollower = scanner.nextLine();
+            switch (choix) {
+                case 0:
+                    // Exit the method
+                    break;
 
-                utilisateur.removeFollowers(pseudoFollower);
-                System.out.println("Suiveur supprimé avec succès !");
-                break;
+                case 1: // Handle follower removal
+                    System.out.println("Entrez le pseudo de l'utilisateur à supprimer : ");
+                    String pseudoFollower = scanner.nextLine();
 
-            case 2 :
-                break;
+                    // Check if the follower exists before attempting to remove
+                    Utilisateur followerToRemove = rechercherUtilisateur(pseudoFollower);
+                    if (followerToRemove != null && utilisateur.getFollowers().contains(followerToRemove)) {
+                        utilisateur.removeFollowers(pseudoFollower);
+                        System.out.println("Suiveur supprimé avec succès !");
+                    } else {
+                        System.out.println("L'utilisateur avec le pseudo entré n'existe pas dans la liste des suiveurs.");
+                    }
+                    break;
+
+                case 2:
+                    // Do nothing and exit
+                    break;
+
+                default:
+                    System.out.println("Choix invalide. Veuillez réessayer.");
+                    break;
+            }
         }
     }
 
@@ -254,10 +275,26 @@ public class Systeme {
         afficherUtilisateurs();
         System.out.println("Entrez le pseudo de l'utilisateur que vous souhaitez suivre : ");
         String pseudo = scanner.nextLine();
+
+        // Attempt to find the user
         Utilisateur user = rechercherUtilisateur(pseudo);
-        user.suivreUtilisateur(pseudo);
-        System.out.println("Vous suivez à présent cette utilisateur!");
+
+        // Check if user is null
+        if (user == null) {
+            System.out.println("Utilisateur non trouvé avec le pseudo : " + pseudo);
+            return; // Exit the method if user is not found
+        }
+
+        try {
+            // Call the suivreUtilisateur method on the found user
+            user.suivreUtilisateur(pseudo);
+            System.out.println("Vous suivez à présent cet utilisateur!");
+        } catch (Exception e) {
+            // Catch any exception that might occur
+            System.err.println("Une erreur est survenue lors de l'ajout de l'utilisateur aux abonnés : " + e.getMessage());
+        }
     }
+
 
 
 
@@ -412,7 +449,7 @@ public class Systeme {
             int choix = Validation.validerChoix(17);
             switch (choix) {
                 case 1:
-                    System.out.println(utilisateur);
+                    System.out.println(utilisateur.utilisateur());
                     break;
 
                 case 2:
@@ -564,7 +601,6 @@ public class Systeme {
                     connected = false;
                     break;
             }
-
             Commande.updateUtilisateur(utilisateur);
         }
     }
