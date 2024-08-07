@@ -8,7 +8,7 @@ public class GestionnaireFlotte {
     }
 
     public void ajouterRobot(String numeroSerie, String nom, String type, int batterie, int consommationCPU) {
-        Robot robot = new Robot(numeroSerie, nom, type, batterie, consommationCPU);
+        Robot robot = new Robot(numeroSerie, nom, type, batterie, consommationCPU, null);
         utilisateur.ajouterRobot(robot);
     }
 

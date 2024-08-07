@@ -26,8 +26,8 @@ public class AfficherMetriquesFlotteTest {
     public void testAfficherMetriques() {
         // Créez des robots pour le test
         List<Robot> robots = new ArrayList<>();
-        robots.add(new Robot("001","Bob:D", "Hybide",80, 20));
-        robots.add(new Robot("002", "Gerard","Mobile", 45, 30));
+        robots.add(new Robot("001","Bob:D", "Hybide",80, 20, null));
+        robots.add(new Robot("002", "Gerard","Mobile", 45, 30, null));
 
         // Capturez la sortie de la console
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

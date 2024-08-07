@@ -153,6 +153,9 @@ public class RobotixMain {
         systeme.ajouterFournisseur(fournisseur5.getNomCompagnie(), fournisseur5);
         systeme.ajouterFournisseur(fournisseur6.getNomCompagnie(), fournisseur6);
 
+        // Tous les utilisateurs
+        ArrayList<Utilisateur> utilisateurs = Commande.LireUtilisateurs();
+        systeme.liste_utilisateur = Commande.listeVersMap(utilisateurs);
 
         // -------------------------------------------------------------------------------------------------------------
 
@@ -221,6 +224,7 @@ public class RobotixMain {
                     System.out.println("0. Non");
                     System.out.println("1. Oui");
 
+
                     int choixCompagnie = Validation.validerChoix(1);
                     switch (choixCompagnie) {
                         case 0:
@@ -229,6 +233,7 @@ public class RobotixMain {
                             System.out.println("enregistrement...");
                             systeme.ajouterUtilisateur(pseudo, user);
                             System.out.println("Votre inscription a été pris en compte. Vous recevrez un mail de confirmation sous 24h !");
+                            Commande.ecrireUserJson(user);
                             break;
 
                         case 1:
@@ -238,12 +243,14 @@ public class RobotixMain {
 
                             Utilisateur user_compagnie = new Utilisateur(pseudo, nom, prenom, mot_de_passe, email,
                                     telephone, nom_compagnie,notification,interet_utilisateur, followers, activites);
+                            Commande.ecrireUserJson(user_compagnie);
                             System.out.println("enregistrement...");
                             systeme.ajouterUtilisateur(pseudo, user_compagnie);
                             System.out.println("Votre inscription a été pris en compte. Vous recevrez un mail de confirmation sous 24h !");
 
                             break;
                     }
+
                 }
 
 

@@ -11,7 +11,7 @@ public class Validation {
         if (email.matches("(?i)^[A-Z0-9+_.-]+@[A-Z0-9.-]+$")) {
             return email;
         }
-        System.out.println("not valid, please enter anew");
+        System.out.println("Invalide. Veuillez réésayer.");
         return validerEmail(scanner.nextLine());
     }
 
@@ -19,7 +19,7 @@ public class Validation {
         if (username.matches("^[A-Za-z0-9_]+$")) {
             return username;
         }
-        System.out.println("not valid, please enter anew");
+        System.out.println("Invalide. Veuillez réésayer.");
         return validerPseudo(scanner.nextLine());
     }
 
@@ -27,7 +27,7 @@ public class Validation {
         if (phoneNum.matches("^[0-9]{10}$")) {
             return phoneNum;
         }
-        System.out.println("not valid, please enter anew");
+        System.out.println("Invalide. Veuillez réésayer.");
         return validerNumero(scanner.nextLine());
     }
 
@@ -39,6 +39,7 @@ public class Validation {
         return validerMotDePasse(scanner.nextLine());
     }
 
+    // TODO A RÉÉCRIRE
     public static int validerChoix(int max) {
         int choice;
 

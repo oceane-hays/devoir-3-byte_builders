@@ -1,5 +1,8 @@
 package com.example.robotix;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 
 
@@ -19,11 +22,19 @@ public class Utilisateur {
         public ArrayList<Robot> liste_robot = new ArrayList<Robot>();
         public ArrayList<Notification> notifications = new ArrayList<Notification>();
 
-
-        public Utilisateur(String identifiant, String nom, String prenom, String mot_de_passe,
-                           String courriel, String telephone, String compagnie, boolean emailNotificationsEnabled,
-                           ArrayList<Interet> interet, ArrayList<Utilisateur> followers,
-                           ArrayList<Activite> activite) {
+        @JsonCreator
+        public Utilisateur(
+                @JsonProperty("identifiant") String identifiant,
+                @JsonProperty("nom") String nom,
+                @JsonProperty("prenom") String prenom,
+                @JsonProperty("mot_de_passe") String mot_de_passe,
+                @JsonProperty("courriel") String courriel,
+                @JsonProperty("telephone") String telephone,
+                @JsonProperty("compagnie") String compagnie,
+                @JsonProperty("emailNotificationsEnabled") boolean emailNotificationsEnabled,
+                @JsonProperty("interet") ArrayList<Interet> interet,
+                @JsonProperty("followers") ArrayList<Utilisateur> followers,
+                @JsonProperty("activite") ArrayList<Activite> activite) {
 
             this.identifiant = identifiant;
             this.nom = nom;
@@ -38,41 +49,88 @@ public class Utilisateur {
             this.activite = activite;
         }
 
+        @Override
+        public String toString() {
+            return "Utilisateur{" +
+                    "identifiant='" + identifiant + '\'' +
+                    ", nom='" + nom + '\'' +
+                    ", prenom='" + prenom + '\'' +
+                    ", mot_de_passe='" + mot_de_passe + '\'' +
+                    ", courriel='" + courriel + '\'' +
+                    ", telephone='" + telephone + '\'' +
+                    ", compagnie='" + compagnie + '\'' +
+                    ", emailNotificationsEnabled=" + emailNotificationsEnabled +
+                    ", interet=" + interet +
+                    ", followers=" + followers +
+                    ", activite=" + activite +
+                    '}';
+        }
+
+        // Getters and Setters
+        @JsonProperty("identifiant")
+        public String getIdentifiant() { return identifiant; }
+
+        @JsonProperty("nom")
+        public String getNom() { return nom; }
+
+        @JsonProperty("prenom")
+        public String getPrenom() { return prenom; }
+
+        @JsonProperty("mot_de_passe")
+        public String getMotDePasse() { return mot_de_passe; }
+
+        @JsonProperty("courriel")
+        public String getCourriel() { return courriel; }
+
+        @JsonProperty("telephone")
+        public String getTelephone() { return telephone; }
+
+        @JsonProperty("compagnie")
+        public String getCompagnie() { return compagnie; }
 
 
-        public String getIdentifiant() { return identifiant;}
 
-        public String getNom() { return nom;}
+        @JsonProperty("interet")
+        public ArrayList<Interet> getInteret() { return interet; }
 
-        public String getPrenom() { return prenom;}
+        @JsonProperty("followers")
+        public ArrayList<Utilisateur> getFollowers() { return followers; }
 
-        public String getMotDePasse() {return mot_de_passe;}
+        @JsonProperty("activite")
+        public ArrayList<Activite> getActivite() { return activite; }
 
-        public String getCourriel() { return courriel;}
+        @JsonProperty("liste_robot")
+        public ArrayList<Robot> getListeRobot() { return liste_robot; }
 
-        public String getTelephone() { return telephone;}
+        @JsonProperty("notifications")
+        public ArrayList<Notification> getNotifications() { return notifications; }
 
-        public ArrayList<Interet> getInteret() { return interet;}
+        public void setIdentifiant(String identifiant) { this.identifiant = identifiant; }
 
-        public ArrayList<Utilisateur> getFollowers() { return followers;}
+        public void setNom(String nom) { this.nom = nom; }
 
-        public ArrayList<Activite> getActivite() { return activite;}
+        public void setPrenom(String prenom) { this.prenom = prenom; }
 
-        public ArrayList<Robot> getListeRobot() {return liste_robot;}
+        public void setMotDePasse(String mot_de_passe) { this.mot_de_passe = mot_de_passe; }
 
-        public ArrayList<Notification> getNotifications() { return notifications;}
+        public void setCourriel(String courriel) { this.courriel = courriel; }
 
-        public void setNom(String nom) { this.nom = nom;}
+        public void setTelephone(String telephone) { this.telephone = telephone; }
 
-        public void setPrenom(String prenom) {this.prenom = prenom;}
+        public void setCompagnie(String compagnie) { this.compagnie = compagnie; }
 
-        public void setMotDePasse(String mot_de_passe) { this.mot_de_passe = mot_de_passe;}
 
-        public void setCourriel(String courriel) {this.courriel = courriel;}
+        public void setEmailNotificationsEnabled(boolean emailNotificationsEnabled) { this.emailNotificationsEnabled = emailNotificationsEnabled; }
 
-        public void setTelephone(String telephone) {this.telephone = telephone;}
+        public void setInteret(ArrayList<Interet> interet) { this.interet = interet; }
 
-        public void setInteret(ArrayList<Interet> interet) {this.interet = interet;}
+        public void setFollowers(ArrayList<Utilisateur> followers) { this.followers = followers; }
+
+        public void setActivite(ArrayList<Activite> activite) { this.activite = activite; }
+
+        public void setListeRobot(ArrayList<Robot> liste_robot) { this.liste_robot = liste_robot; }
+
+        public void setNotifications(ArrayList<Notification> notifications) { this.notifications = notifications; }
 
 
         public void removeFollowers(String pseudo) {
@@ -100,11 +158,7 @@ public class Utilisateur {
         public void supprimerRobot(Robot robot) {liste_robot.remove(robot);}
 
 
-
-
-
-    @Override
-    public String toString() {
+    public String utilisateur() {
         StringBuilder followersIds = new StringBuilder();
         if (followers != null) {
             for (Utilisateur follower : followers) {
@@ -154,13 +208,9 @@ public class Utilisateur {
     }
 
 
-
+    @JsonProperty("emailNotificationsEnabled")
     public boolean isEmailNotificationsEnabled() {
         return emailNotificationsEnabled;
-    }
-
-    public void setEmailNotificationsEnabled(boolean emailNotificationsEnabled) {
-        this.emailNotificationsEnabled = emailNotificationsEnabled;
     }
 
 

@@ -1,18 +1,17 @@
 package com.example.robotix;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
-import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Commande {
 
@@ -178,11 +177,80 @@ public class Commande {
         }*/
     }
 
+    public static void updateUtilisateur(Utilisateur utilisateur) {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        ArrayList<Utilisateur> utilisateurs = LireUtilisateurs();
+        boolean updated = false;
+
+        // Parcourir la liste des utilisateurs pour trouver l'utilisateur à mettre à jour
+        for (int i = 0; i < utilisateurs.size(); i++) {
+            Utilisateur current = utilisateurs.get(i);
+            if (current.getIdentifiant().equals(utilisateur.getIdentifiant())) {
+                // Mettre à jour les informations de l'utilisateur
+                utilisateurs.set(i, utilisateur);
+                updated = true;
+                break;
+            }
+        }
+
+        if (updated) {
+            try {
+                // Réécrire la liste mise à jour dans le fichier JSON
+                objectMapper.writeValue(new File("utilisateurs.json"), utilisateurs);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Utilisateur not found in utilisateurs.json");
+        }
+    }
+
+    public static ArrayList<Utilisateur> LireUtilisateurs() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ArrayList<Utilisateur> utilisateurs = new ArrayList<>();
+
+        try {
+            // Deserialize the JSON file to a list of Utilisateur objects
+            utilisateurs = (ArrayList<Utilisateur>) objectMapper.readValue(new File("utilisateurs.json"), new TypeReference<List<Utilisateur>>() {});
+            System.out.println("List of Utilisateur objects deserialized from utilisateurs.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return utilisateurs;
+    }
+    public static HashMap<String, Utilisateur> listeVersMap(ArrayList<Utilisateur> utilisateurs) {
+        HashMap<String, Utilisateur> utilisateurMap = new HashMap<>();
+
+        for (Utilisateur utilisateur : utilisateurs) {
+            utilisateurMap.put(utilisateur.getIdentifiant(), utilisateur);
+        }
+
+        return utilisateurMap;
+    }
+
+    public static void ecrireUserJson(Utilisateur utilisateur){
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        ArrayList<Utilisateur> utilisateurs = LireUtilisateurs();
+        utilisateurs.add(utilisateur);
+
+        try {
+            // Serialize the object to a JSON file
+            objectMapper.writeValue(new File("utilisateurs.json"), utilisateurs);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void ecrireUserCSV (Utilisateur utilisateur) throws IOException{
-        CSVWriter writer = new CSVWriter(new FileWriter("./com/example/robotix/dataUser.csv")) ;
+        CSVWriter writer = new CSVWriter(new FileWriter("com/example/robotix/Data/dataUser.csv")) ;
 
         String set[] = {utilisateur.getIdentifiant(), utilisateur.getNom(), utilisateur.getPrenom(),
                         utilisateur.getMotDePasse(), utilisateur.getCourriel(), utilisateur.getTelephone(),
+                        String.valueOf(utilisateur.getNotifications()),
                         String.valueOf(utilisateur.getInteret()),
                         String.valueOf(utilisateur.getListeRobot()),
                         String.valueOf(utilisateur.getActivite())};
@@ -190,7 +258,7 @@ public class Commande {
     }
 
     public static void ecrireFournisseurCSV (Fournisseur fournisseur) throws IOException{
-        CSVWriter writer = new CSVWriter(new FileWriter("./com/example/robotix/dataUser.csv")) ;
+        CSVWriter writer = new CSVWriter(new FileWriter("com/example/robotix/Data/dataUser.csv")) ;
 
         String set[] = {fournisseur.getNomCompagnie(), fournisseur.getMotDePasse(), fournisseur.getAdresse(),
                 String.valueOf(fournisseur.getComposantes())} ;

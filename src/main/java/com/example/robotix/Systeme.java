@@ -158,7 +158,7 @@ public class Systeme {
                 String id_utilisateur = scanner.nextLine();
                 Utilisateur utilisateur = rechercherUtilisateur(id_utilisateur);
                 if (utilisateur != null) {
-                    System.out.println(utilisateur);
+                    System.out.println(utilisateur.utilisateur());
                 } else {
                     System.out.println("Utilisateur non trouvé.");
                 }
@@ -384,7 +384,8 @@ public class Systeme {
 
     // ------------------------------------------------------------------------------------------------ MENU UTILISATEUR
     public void menuUtilisateur(Utilisateur utilisateur, Scanner scanner) {
-        while (true) {
+        boolean connected = true;
+        while (connected) {
             System.out.println("Choisissez une option : ");
 
             System.out.println("1. Afficher les informations de mon profil");
@@ -560,14 +561,18 @@ public class Systeme {
 
                 case 0 :
                     System.out.println("Déconnexion réussie.");
+                    connected = false;
                     break;
             }
+
+            Commande.updateUtilisateur(utilisateur);
         }
     }
 
     // ------------------------------------------------------------------------------------------------ MENU FOURNISSEUR
     public void menuFournisseur(Fournisseur fournisseur, Scanner scanner) {
-        while (true) {
+        boolean connected = true;
+        while (connected) {
             System.out.println("Choisissez une option : ");
             System.out.println("1. Afficher les informations de mon profil");
             System.out.println("2. Modifier mes informations");
@@ -655,6 +660,7 @@ public class Systeme {
 
                 case 0:
                     System.out.println("Déconnexion réussie.");
+                    connected = false;
                     break; // Sort de la boucle pour se déconnecter
             }
         }
