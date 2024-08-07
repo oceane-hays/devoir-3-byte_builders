@@ -40,4 +40,8 @@ public class Interet {
     public String toString() {
         return description;
     }
+
+    public Integer getId() {
+        return null;
+    }
 }
