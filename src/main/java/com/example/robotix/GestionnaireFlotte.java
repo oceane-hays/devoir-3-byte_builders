@@ -1,5 +1,7 @@
 package com.example.robotix;
 
+import java.util.ArrayList;
+
 public class GestionnaireFlotte {
     private static Utilisateur utilisateur;
 
@@ -48,6 +50,7 @@ public class GestionnaireFlotte {
         if (!utilisateur.liste_robot.isEmpty()) {
             for (Robot robot : utilisateur.liste_robot) {
                 System.out.println("Robot : " + robot.getNom() + " (" + robot.getNumSerie() + ")");
+                if(robot.getComposantes() == null) robot.setComposantes(new ArrayList<>());
                 for (Composante composante : robot.getComposantes()) {
                     System.out.println("  Composante : " + composante.getNom() + " - " + composante.getType());
                 }
