@@ -4,8 +4,8 @@ import com.example.robotix.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,5 +61,51 @@ public class RobotixMainTest {
 
         assertTrue(liste_fournisseur.containsKey(newFournisseur.getNomCompagnie()));
         assertEquals(newFournisseur, liste_fournisseur.get(newFournisseur.getNomCompagnie()));
+    }
+
+    @Test
+    public void testInscriptionUtilisateur() {
+        // Simuler l'inscription d'un utilisateur
+        Utilisateur newUser = new Utilisateur("alice", "Doe", "Alice", "password123",
+                "alice@example.com", "+0123456789", "Company", true, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        systeme.ajouterUtilisateur(newUser.getIdentifiant(), newUser);
+
+        // Vérifiez que l'utilisateur a été ajouté correctement
+        assertTrue(liste_utilisateur.containsKey(newUser.getIdentifiant()));
+        assertEquals(newUser, liste_utilisateur.get(newUser.getIdentifiant()));
+    }
+
+    @Test
+    public void testInscriptionFournisseur() {
+        // Simuler l'inscription d'un fournisseur
+        Fournisseur newFournisseur = new Fournisseur("Gadget World", "securepassword", "456 Gadget Lane",
+                "gadget@example.com", "+0987654321", 250);
+        systeme.ajouterFournisseur(newFournisseur.getNomCompagnie(), newFournisseur);
+
+        // Vérifiez que le fournisseur a été ajouté correctement
+        assertTrue(liste_fournisseur.containsKey(newFournisseur.getNomCompagnie()));
+        assertEquals(newFournisseur, liste_fournisseur.get(newFournisseur.getNomCompagnie()));
+    }
+
+    @Test
+    public void testConnexionUtilisateurValide() {
+        // Simuler une connexion utilisateur valide
+        Utilisateur existingUser = new Utilisateur("bob", "Smith", "Bob", "mypassword",
+                "bob@example.com", "+3216549870", "Tech Co.", true, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        systeme.ajouterUtilisateur(existingUser.getIdentifiant(), existingUser);
+
+        boolean connexionResult = systeme.estCorrect("bob", "mypassword", null);
+
+        // Vérifiez que la connexion est réussie
+        assertTrue(connexionResult);
+    }
+
+    @Test
+    public void testConnexionUtilisateurInvalide() {
+        // Simuler une connexion utilisateur invalide
+        boolean connexionResult = systeme.estCorrect("nonexistent_user", "wrongpassword", null);
+
+        // Vérifiez que la connexion échoue
+        assertFalse(connexionResult);
     }
 }
