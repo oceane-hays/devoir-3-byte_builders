@@ -1,23 +1,28 @@
 package com.example.robotix;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+/**
+ * Classe Commande contenant diverses méthodes pour gérer les utilisateurs, les fournisseurs,
+ * les intérêts et les fichiers CSV.
+ */
 public class Commande {
 
-
-
-    // ------------------------------------------------------------------------------- S'INSCRIRE EN TANT QU'UTILISATEUR
+    /**
+     * Ajoute un pseudo unique à la liste des utilisateurs.
+     *
+     * @param scanner Le scanner pour lire les entrées utilisateur.
+     * @param liste_utilisateur La liste des utilisateurs existants.
+     * @return Le pseudo unique ajouté.
+     */
     public static String ajouterPseudoUnique(Scanner scanner, HashMap<String, Utilisateur> liste_utilisateur) {
         boolean cherchePseudo = true;
         System.out.println("entrez votre pseudo : ");
@@ -44,6 +49,13 @@ public class Commande {
         return pseudo;
     }
 
+    /**
+     * Ajoute une adresse email unique à la liste des utilisateurs.
+     *
+     * @param scanner Le scanner pour lire les entrées utilisateur.
+     * @param liste_utilisateur La liste des utilisateurs existants.
+     * @return L'email unique ajouté.
+     */
     public static String ajouterEmailUnique(Scanner scanner, HashMap<String, Utilisateur> liste_utilisateur) {
         boolean chercheEmail = true;
         System.out.println("entrez votre adresse email : ");
@@ -71,9 +83,15 @@ public class Commande {
         return email;
     }
 
-
+    /**
+     * Permet à un utilisateur de choisir ses intérêts parmi une liste.
+     *
+     * @param scanner Le scanner pour lire les entrées utilisateur.
+     * @param liste_interet La liste des intérêts disponibles.
+     * @return La liste des intérêts choisis par l'utilisateur.
+     */
     public static ArrayList<Interet> choisirInteret(Scanner scanner, HashMap<Integer, Interet> liste_interet) {
-        ArrayList<Interet> utilisateur_interet = new ArrayList<Interet>();
+        ArrayList<Interet> utilisateur_interet = new ArrayList<>();
         boolean encours = true;
         int nbInteretsChoisis = 0;
         final int maximum = 10; // Limite de 10 intérêts
@@ -102,9 +120,14 @@ public class Commande {
         return utilisateur_interet;
     }
 
-    // ------------------------------------------------------------------------------ S'INSCRIRE EN TANT QUE FOURNISSEUR
-    public static String ajouterNomCompagnieUnique(Scanner scanner,
-                                                 HashMap<String, Fournisseur> liste_founisseur) {
+    /**
+     * Ajoute un nom de compagnie unique à la liste des fournisseurs.
+     *
+     * @param scanner Le scanner pour lire les entrées utilisateur.
+     * @param liste_founisseur La liste des fournisseurs existants.
+     * @return Le nom de compagnie unique ajouté.
+     */
+    public static String ajouterNomCompagnieUnique(Scanner scanner, HashMap<String, Fournisseur> liste_founisseur) {
         boolean cherchePseudo = true;
         System.out.println("Entrez le nom de la compagnie : ");
         String nom_compagnie = "";
@@ -130,11 +153,15 @@ public class Commande {
         return nom_compagnie;
     }
 
-
-
-    // ------------------------------------------------------------------------------------------- CREER LISTE D'INTERET
+    /**
+     * Crée une liste d'intérêts basée sur les numéros fournis.
+     *
+     * @param liste_interet La liste des intérêts disponibles.
+     * @param numeros Les numéros des intérêts à ajouter à la liste.
+     * @return La liste des intérêts choisis.
+     */
     public static ArrayList<Interet> creerListeInterets(HashMap<Integer, Interet> liste_interet, int... numeros) {
-        ArrayList<Interet> listeInterets = new ArrayList<Interet>();
+        ArrayList<Interet> listeInterets = new ArrayList<>();
         for (int num : numeros) {
             if (liste_interet.containsKey(num)) {
                 listeInterets.add(liste_interet.get(num));
@@ -143,9 +170,15 @@ public class Commande {
         return listeInterets;
     }
 
-
+    /**
+     * Crée une liste de followers basée sur les identifiants d'utilisateurs fournis.
+     *
+     * @param liste_utilisateur La liste des utilisateurs existants.
+     * @param utilisateur Les identifiants des utilisateurs à ajouter à la liste des followers.
+     * @return La liste des followers choisis.
+     */
     public static ArrayList<Utilisateur> creerListeFollowers(HashMap<String, Utilisateur> liste_utilisateur, String... utilisateur) {
-        ArrayList<Utilisateur> liste_followers = new ArrayList<Utilisateur>();
+        ArrayList<Utilisateur> liste_followers = new ArrayList<>();
         for (String util : utilisateur) {
             if (liste_utilisateur.containsKey(util)) {
                 liste_followers.add(liste_utilisateur.get(util));
@@ -154,8 +187,15 @@ public class Commande {
         return liste_followers;
     }
 
+    /**
+     * Crée une liste d'activités basée sur les numéros fournis.
+     *
+     * @param liste_activites La liste des activités disponibles.
+     * @param activite Les numéros des activités à ajouter à la liste.
+     * @return La liste des activités choisies.
+     */
     public static ArrayList<Activite> creerListeActivite(HashMap<Integer, Activite> liste_activites, int... activite) {
-        ArrayList<Activite> liste_activite = new ArrayList<Activite>();
+        ArrayList<Activite> liste_activite = new ArrayList<>();
         for (int num : activite) {
             if (liste_activites.containsKey(num)) {
                 liste_activite.add(liste_activites.get(num));
@@ -164,19 +204,24 @@ public class Commande {
         return liste_activite;
     }
 
-
-    // -------------------------------------------------------------------------------------------- COMMANDE FICHIER CSV
-    public static void traiterFichier (String pathName) throws IOException, CsvValidationException {
-        CSVReader csvReader = new CSVReader(new FileReader(pathName)) ;
+    /**
+     * Traite un fichier CSV.
+     *
+     * @param pathName Le chemin du fichier CSV à traiter.
+     * @throws IOException Si une erreur d'entrée/sortie se produit.
+     * @throws CsvValidationException Si une erreur de validation CSV se produit.
+     */
+    public static void traiterFichier(String pathName) throws IOException, CsvValidationException {
+        CSVReader csvReader = new CSVReader(new FileReader(pathName));
         String[] lines;
-        /*while ((lines = csvReader.readNext()) != null) {
-
-            for (int i = 0; i < lines.length; i++) {
-
-            }
-        }*/
+        // Code pour traiter les lignes du fichier CSV
     }
 
+    /**
+     * Met à jour les informations d'un utilisateur dans le fichier JSON.
+     *
+     * @param utilisateur L'utilisateur à mettre à jour.
+     */
     public static void updateUtilisateur(Utilisateur utilisateur) {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -206,6 +251,11 @@ public class Commande {
         }
     }
 
+    /**
+     * Lit la liste des utilisateurs à partir du fichier JSON.
+     *
+     * @return La liste des utilisateurs.
+     */
     public static ArrayList<Utilisateur> LireUtilisateurs() {
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Utilisateur> utilisateurs = new ArrayList<>();
@@ -220,6 +270,13 @@ public class Commande {
 
         return utilisateurs;
     }
+
+    /**
+     * Convertit une liste d'utilisateurs en une HashMap.
+     *
+     * @param utilisateurs La liste des utilisateurs.
+     * @return La HashMap des utilisateurs.
+     */
     public static HashMap<String, Utilisateur> listeVersMap(ArrayList<Utilisateur> utilisateurs) {
         HashMap<String, Utilisateur> utilisateurMap = new HashMap<>();
 
@@ -230,8 +287,12 @@ public class Commande {
         return utilisateurMap;
     }
 
-    public static void ecrireUserJson(Utilisateur utilisateur){
-
+    /**
+     * Écrit un utilisateur dans le fichier JSON.
+     *
+     * @param utilisateur L'utilisateur à écrire.
+     */
+    public static void ecrireUserJson(Utilisateur utilisateur) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         ArrayList<Utilisateur> utilisateurs = LireUtilisateurs();
@@ -244,7 +305,4 @@ public class Commande {
             e.printStackTrace();
         }
     }
-
 }
-
-

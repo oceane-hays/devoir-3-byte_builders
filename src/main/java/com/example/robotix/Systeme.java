@@ -2,14 +2,26 @@ package com.example.robotix;
 
 import java.util.*;
 
+/**
+ * La classe {@code Systeme} gère les différentes entités du système Robotix, y compris les utilisateurs, les fournisseurs, les activités, les intérêts et les composants.
+ * Elle permet d'ajouter, rechercher et afficher ces entités.
+ */
 public class Systeme {
-    public HashMap<String, Utilisateur> liste_utilisateur; // < identifiant , utilisateur >
-    public HashMap<String, Fournisseur> liste_fournisseur; // < nom_compagnie , fournisseur >
-    public HashMap<Integer, Activite> liste_activites;
-    public HashMap<Integer, Interet> liste_interet;
-    public ArrayList<Composante> liste_composante;
+    private HashMap<String, Utilisateur> liste_utilisateur; // < identifiant , utilisateur >
+    private HashMap<String, Fournisseur> liste_fournisseur; // < nom_compagnie , fournisseur >
+    private HashMap<Integer, Activite> liste_activites;
+    private HashMap<Integer, Interet> liste_interet;
+    private ArrayList<Composante> liste_composante;
 
-
+    /**
+     * Constructeur de la classe {@code Systeme}.
+     *
+     * @param liste_utilisateur La liste des utilisateurs avec leurs identifiants comme clé.
+     * @param liste_fournisseur La liste des fournisseurs avec le nom de la compagnie comme clé.
+     * @param liste_activites La liste des activités avec un identifiant unique comme clé.
+     * @param liste_interet La liste des intérêts avec un identifiant unique comme clé.
+     * @param liste_composante La liste des composants.
+     */
     public Systeme(HashMap<String, Utilisateur> liste_utilisateur, HashMap<String, Fournisseur> liste_fournisseur,
                    HashMap<Integer, Activite> liste_activites, HashMap<Integer, Interet> liste_interet,
                    ArrayList<Composante> liste_composante) {
@@ -21,67 +33,120 @@ public class Systeme {
         this.liste_composante  = liste_composante;
     }
 
-
-
+    /**
+     * Retourne la liste des utilisateurs.
+     *
+     * @return La liste des utilisateurs.
+     */
     public HashMap<String, Utilisateur> getListeUtilisateur() {
         return liste_utilisateur;
     }
+
+    /**
+     * Retourne la liste des fournisseurs.
+     *
+     * @return La liste des fournisseurs.
+     */
     public HashMap<String, Fournisseur> getListeFournisseur() {
         return liste_fournisseur;
     }
+
+    /**
+     * Retourne la liste des activités.
+     *
+     * @return La liste des activités.
+     */
     public HashMap<Integer, Activite> getListeActivites() {
         return liste_activites;
     }
+
+    /**
+     * Retourne la liste des intérêts.
+     *
+     * @return La liste des intérêts.
+     */
     public HashMap<Integer, Interet> getListeInteret() {
         return liste_interet;
     }
+
+    /**
+     * Retourne la liste des composants.
+     *
+     * @return La liste des composants.
+     */
     public ArrayList<Composante> getListeComposante() {
         return liste_composante;
     }
 
-
+    /**
+     * Ajoute un utilisateur à la liste des utilisateurs si l'identifiant n'existe pas déjà.
+     *
+     * @param identifiant L'identifiant de l'utilisateur.
+     * @param utilisateur L'objet utilisateur à ajouter.
+     */
     public void ajouterUtilisateur(String identifiant, Utilisateur utilisateur) {
         if (!liste_utilisateur.containsKey(identifiant)) {
             liste_utilisateur.put(identifiant, utilisateur);
         }
     }
 
+    /**
+     * Ajoute un fournisseur à la liste des fournisseurs si le nom de la compagnie n'existe pas déjà.
+     *
+     * @param nomCompagnie Le nom de la compagnie du fournisseur.
+     * @param fournisseur L'objet fournisseur à ajouter.
+     */
     public void ajouterFournisseur(String nomCompagnie, Fournisseur fournisseur) {
         if (!liste_fournisseur.containsKey(nomCompagnie)) {
             liste_fournisseur.put(nomCompagnie, fournisseur);
         }
     }
 
+    /**
+     * Affiche tous les utilisateurs dans la console.
+     */
     public void afficherUtilisateurs() {
         for (Map.Entry<String, Utilisateur> entry : liste_utilisateur.entrySet()) {
             System.out.println(entry.getValue().toStringUtilisateur());
         }
     }
 
+    /**
+     * Affiche tous les fournisseurs dans la console.
+     */
     public void afficherFournisseurs() {
         for (Map.Entry<String, Fournisseur> entry : liste_fournisseur.entrySet()) {
             System.out.println(entry.getValue().fournisseur());
         }
     }
 
-    // Méthode pour afficher les activités en console
+    /**
+     * Affiche toutes les activités dans la console.
+     */
     public void afficherActivites() {
         for (Map.Entry<Integer, Activite> entry : liste_activites.entrySet()) {
             System.out.println(entry.getKey() + " = " + entry.getValue());
         }
     }
 
-
-    // TODO implementer dans le code
+    /**
+     * Affiche tous les intérêts dans la console.
+     * Cette méthode est à implémenter.
+     */
     public void afficherInterets() {
         for (Map.Entry<Integer, Interet> entry : liste_interet.entrySet()) {
             System.out.println(entry.getKey() + " : " + entry.getValue());
         }
     }
 
-
     // -------------------------------------------------------------------------------------------- SECTION DE RECHERCHE
 
+    /**
+     * Recherche un utilisateur par son identifiant.
+     *
+     * @param identifiant L'identifiant de l'utilisateur à rechercher.
+     * @return L'utilisateur correspondant à l'identifiant, ou {@code null} si non trouvé.
+     */
     public Utilisateur rechercherUtilisateur(String identifiant) {
         if (liste_utilisateur.containsKey(identifiant)) {
             return liste_utilisateur.get(identifiant);
@@ -91,6 +156,12 @@ public class Systeme {
         }
     }
 
+    /**
+     * Recherche un fournisseur par le nom de la compagnie.
+     *
+     * @param nomCompagnie Le nom de la compagnie du fournisseur à rechercher.
+     * @return Le fournisseur correspondant au nom, ou {@code null} si non trouvé.
+     */
     public Fournisseur rechercherFournisseur(String nomCompagnie) {
         if (liste_fournisseur.containsKey(nomCompagnie)) {
             return liste_fournisseur.get(nomCompagnie);
@@ -100,6 +171,12 @@ public class Systeme {
         }
     }
 
+    /**
+     * Recherche un fournisseur par son adresse.
+     *
+     * @param adresseFournisseur L'adresse du fournisseur à rechercher.
+     * @return Le fournisseur correspondant à l'adresse, ou {@code null} si non trouvé.
+     */
     private Fournisseur rechercherFournisseurParAdresse(String adresseFournisseur) {
         for (Map.Entry<String, Fournisseur> entry : liste_fournisseur.entrySet()) {
             Fournisseur fournisseur = entry.getValue();
@@ -110,6 +187,12 @@ public class Systeme {
         return null;
     }
 
+    /**
+     * Recherche des fournisseurs qui proposent un type spécifique de composant.
+     *
+     * @param type Le type de composant à rechercher.
+     * @return Une liste de fournisseurs proposant le type de composant spécifié.
+     */
     private ArrayList<Fournisseur> rechercherFournisseurParTypeComposante(String type) {
         ArrayList<Fournisseur> fournisseursTrouves = new ArrayList<Fournisseur>();
         for (Map.Entry<String, Fournisseur> entry : liste_fournisseur.entrySet()) {
@@ -124,6 +207,12 @@ public class Systeme {
         return fournisseursTrouves;
     }
 
+    /**
+     * Recherche une composante par son nom.
+     *
+     * @param nomComposante Le nom de la composante à rechercher.
+     * @return La composante correspondant au nom, ou {@code null} si non trouvée.
+     */
     public Composante rechercherComposante(String nomComposante) {
         for (Composante composante : liste_composante) {
             if (composante.getNom().equalsIgnoreCase(nomComposante)) {
@@ -133,9 +222,12 @@ public class Systeme {
         return null; // Renvoie null si aucune composante avec ce nom n'est trouvée
     }
 
-
-    public void autresFonctionnalites (Scanner scanner) {
-
+    /**
+     * Affiche un menu de recherche et traite la sélection de l'utilisateur.
+     *
+     * @param scanner Le scanner pour lire les entrées utilisateur.
+     */
+    public void autresFonctionnalites(Scanner scanner) {
         System.out.println("1. Rechercher un utilisateur par pseudo");
         System.out.println("2. Rechercher un fournisseur par nom");
         System.out.println("3. Rechercher un fournisseur par adresse");
@@ -143,18 +235,14 @@ public class Systeme {
         System.out.println("5. Rechercher une composante par nom");
         System.out.println("0. QUITTER");
 
-
         int choix = Validation.validerChoix(5);
         switch (choix) {
-
-            case 0 :
+            case 0:
                 break;
 
-            case 1 : // Rechercher un utilisateur
+            case 1: // Rechercher un utilisateur
                 afficherUtilisateurs();
                 System.out.println("Entrez l'identifiant de l'utilisateur à rechercher : ");
-
-
                 String id_utilisateur = scanner.nextLine();
                 Utilisateur utilisateur = rechercherUtilisateur(id_utilisateur);
                 if (utilisateur != null) {
@@ -167,7 +255,6 @@ public class Systeme {
             case 2:
                 afficherFournisseurs();
                 System.out.println("Entrez le nom de la compagnie du fournisseur à rechercher : ");
-
                 String nomFournisseur = scanner.nextLine();
                 Fournisseur fournisseur = rechercherFournisseur(nomFournisseur);
                 if (fournisseur != null) {
@@ -180,7 +267,6 @@ public class Systeme {
             case 3:
                 afficherFournisseurs();
                 System.out.println("Entrez l'adresse de la compagnie du fournisseur à rechercher : ");
-
                 String adresseFournisseur = scanner.nextLine();
                 Fournisseur fournisseurParAdresse = rechercherFournisseurParAdresse(adresseFournisseur);
                 if (fournisseurParAdresse != null) {
@@ -190,11 +276,9 @@ public class Systeme {
                 }
                 break;
 
-                
             case 4:
                 afficherFournisseurs();
                 System.out.println("Entrez le type de composante du fournisseur à rechercher : ");
-
                 String type = scanner.nextLine();
                 ArrayList<Fournisseur> fournisseurParType = rechercherFournisseurParTypeComposante(type);
                 if (fournisseurParType != null) {
@@ -207,7 +291,6 @@ public class Systeme {
 
             case 5:
                 System.out.println("Entrez le nom de la composante à rechercher : ");
-
                 String nomComposante = scanner.next();
                 scanner.nextLine(); // Pour consommer le retour à la ligne après nextInt()
                 Composante composante = rechercherComposante(nomComposante);
@@ -223,34 +306,46 @@ public class Systeme {
         }
     }
 
+/**
+ * La classe {@code GestionUtilisateur} gère les opérations et les fonctionnalités liées aux utilisateurs dans le système Robotix.
+ * Cela inclut la gestion des abonnés, la modification du profil utilisateur, la connexion, la messagerie, et l'affichage du menu utilisateur.
+ */
+public class GestionUtilisateur {
+
+    /**
+     * Gère les abonnés d'un utilisateur. Permet de visualiser les abonnés et de supprimer un abonné.
+     *
+     * @param scanner Le scanner pour lire les entrées utilisateur.
+     * @param utilisateur L'utilisateur dont les abonnés doivent être gérés.
+     */
     public void gestionSuiveurs(Scanner scanner, Utilisateur utilisateur) {
-        // Check if the followers list is null or empty
+        // Vérifie si la liste des abonnés est nulle ou vide
         if (utilisateur.getFollowers() == null || utilisateur.getFollowers().isEmpty()) {
             System.out.println("Vous n'êtes suivi par personne.");
         } else {
-            // Print the list of followers
+            // Affiche la liste des abonnés
             System.out.println("Voici la liste des utilisateurs qui vous suivent : ");
             System.out.println(utilisateur.toStringFollowers());
 
-            // Present choices to the user
+            // Présente les choix à l'utilisateur
             System.out.println("Souhaitez-vous supprimer un utilisateur : ");
             System.out.println("1. Oui");
             System.out.println("2. Non");
             System.out.println("0. QUITTER");
 
-            // Validate user choice
+            // Valide le choix de l'utilisateur
             int choix = Validation.validerChoix(2);
 
             switch (choix) {
                 case 0:
-                    // Exit the method
+                    // Quitte la méthode
                     break;
 
-                case 1: // Handle follower removal
+                case 1: // Gère la suppression d'un abonné
                     System.out.println("Entrez le pseudo de l'utilisateur à supprimer : ");
                     String pseudoFollower = scanner.nextLine();
 
-                    // Check if the follower exists before attempting to remove
+                    // Vérifie si l'abonné existe avant de tenter de le supprimer
                     Utilisateur followerToRemove = rechercherUtilisateur(pseudoFollower);
                     if (followerToRemove != null && utilisateur.getFollowers().contains(followerToRemove)) {
                         utilisateur.removeFollowers(pseudoFollower);
@@ -261,7 +356,7 @@ public class Systeme {
                     break;
 
                 case 2:
-                    // Do nothing and exit
+                    // Ne fait rien et quitte
                     break;
 
                 default:
@@ -271,35 +366,41 @@ public class Systeme {
         }
     }
 
+    /**
+     * Permet à un utilisateur de suivre un autre utilisateur.
+     *
+     * @param scanner Le scanner pour lire les entrées utilisateur.
+     */
     public void suivreUtilisateur(Scanner scanner) {
         afficherUtilisateurs();
         System.out.println("Entrez le pseudo de l'utilisateur que vous souhaitez suivre : ");
         String pseudo = scanner.nextLine();
 
-        // Attempt to find the user
+        // Tente de trouver l'utilisateur
         Utilisateur user = rechercherUtilisateur(pseudo);
 
-        // Check if user is null
+        // Vérifie si l'utilisateur est null
         if (user == null) {
             System.out.println("Utilisateur non trouvé avec le pseudo : " + pseudo);
-            return; // Exit the method if user is not found
+            return; // Quitte la méthode si l'utilisateur n'est pas trouvé
         }
 
         try {
-            // Call the suivreUtilisateur method on the found user
+            // Appelle la méthode suivreUtilisateur sur l'utilisateur trouvé
             user.suivreUtilisateur(pseudo);
             System.out.println("Vous suivez à présent cet utilisateur!");
         } catch (Exception e) {
-            // Catch any exception that might occur
+            // Capture toute exception qui pourrait survenir
             System.err.println("Une erreur est survenue lors de l'ajout de l'utilisateur aux abonnés : " + e.getMessage());
         }
     }
 
-
-
-
-
-    // -------------------------------------------------------------------------------------------- MODIFIER PROFIL USER
+    /**
+     * Permet à un utilisateur de modifier ses informations de profil.
+     *
+     * @param scanner Le scanner pour lire les entrées utilisateur.
+     * @param utilisateur L'utilisateur dont le profil doit être modifié.
+     */
     public void modifierProfil(Scanner scanner, Utilisateur utilisateur) {
         System.out.println("-- MODIFICATION DE PROFIL UTILISATEUR --");
         System.out.println("1. Modifier mon nom");
@@ -343,7 +444,7 @@ public class Systeme {
                 System.out.println("Téléphone mis à jour.");
                 break;
 
-            case 6 :
+            case 6:
                 System.out.println("Liste de vos intérêts actuels: ");
                 System.out.println(utilisateur.toStringInteret());
 
@@ -355,12 +456,18 @@ public class Systeme {
 
             case 0:
                 break;
-
         }
-        System.out.println("Vos informations ont été modifié avec succès !");
+        System.out.println("Vos informations ont été modifiées avec succès !");
     }
 
-    // ------------------------------------------------------------------------------------------------------- CONNEXION
+    /**
+     * Vérifie si les informations d'identification sont correctes pour se connecter.
+     *
+     * @param identifiant L'identifiant de l'utilisateur ou du fournisseur.
+     * @param mot_de_passe Le mot de passe de l'utilisateur ou du fournisseur.
+     * @param scanner Le scanner pour lire les entrées utilisateur.
+     * @return {@code true} si la connexion est réussie, {@code false} sinon.
+     */
     public boolean estCorrect(String identifiant, String mot_de_passe, Scanner scanner) {
         boolean connexion = false;
 
@@ -371,7 +478,6 @@ public class Systeme {
                 System.out.println("Connexion réussie. Bienvenue, " + utilisateur.getIdentifiant());
                 menuUtilisateur(utilisateur, scanner);
             }
-
         } else if (liste_fournisseur.containsKey(identifiant)) {
             Fournisseur fournisseur = liste_fournisseur.get(identifiant);
             if (recherchePasswordFournisseur(mot_de_passe, fournisseur)) {
@@ -385,6 +491,13 @@ public class Systeme {
         return connexion;
     }
 
+    /**
+     * Vérifie si le mot de passe correspond à celui de l'utilisateur.
+     *
+     * @param mot_de_passe Le mot de passe à vérifier.
+     * @param utilisateur L'utilisateur dont le mot de passe doit être vérifié.
+     * @return {@code true} si le mot de passe est correct, {@code false} sinon.
+     */
     public boolean recherchePasswordUtilisateur(String mot_de_passe, Utilisateur utilisateur) {
         if (utilisateur.getMotDePasse().equals(mot_de_passe)) {
             return true;
@@ -394,6 +507,13 @@ public class Systeme {
         }
     }
 
+    /**
+     * Vérifie si le mot de passe correspond à celui du fournisseur.
+     *
+     * @param mot_de_passe Le mot de passe à vérifier.
+     * @param fournisseur Le fournisseur dont le mot de passe doit être vérifié.
+     * @return {@code true} si le mot de passe est correct, {@code false} sinon.
+     */
     public boolean recherchePasswordFournisseur(String mot_de_passe, Fournisseur fournisseur) {
         if (fournisseur.getMotDePasse().equals(mot_de_passe)) {
             return true;
@@ -403,7 +523,11 @@ public class Systeme {
         }
     }
 
-    // ------------------------------------------------------------------------------------------ VOIR MES NOTIFICATIONS
+    /**
+     * Ouvre la messagerie de l'utilisateur et affiche ses notifications.
+     *
+     * @param utilisateur L'utilisateur dont les notifications doivent être affichées.
+     */
     public void ouvrirMessagerie(Utilisateur utilisateur) {
         // Vérifie si l'utilisateur a des notifications
         if (utilisateur.getNotifications().isEmpty()) {
@@ -414,12 +538,16 @@ public class Systeme {
         // Parcourt la liste des notifications de l'utilisateur
         for (Notification notification : utilisateur.getNotifications()) {
             // Affiche les détails de chaque notification
-            System.out.println(notification.toString() );
+            System.out.println(notification.toString());
         }
     }
 
-
-    // ------------------------------------------------------------------------------------------------ MENU UTILISATEUR
+    /**
+     * Affiche le menu principal pour l'utilisateur connecté.
+     *
+     * @param utilisateur L'utilisateur connecté.
+     * @param scanner Le scanner pour lire les entrées utilisateur.
+     */
     public void menuUtilisateur(Utilisateur utilisateur, Scanner scanner) {
         boolean connected = true;
         while (connected) {
@@ -427,22 +555,20 @@ public class Systeme {
 
             System.out.println("1. Afficher les informations de mon profil");
             System.out.println("2. Modifier mes informations");
-
             System.out.println("3. Gérer ma flotte");
             System.out.println("4. Afficher mes activités");
-            System.out.println("5. Trouver des utilisateurs ");
-            System.out.println("6. Voir le profil d'un utilisateur ");
-            System.out.println("7. Voir le profil d'un fournisseur ");
+            System.out.println("5. Trouver des utilisateurs");
+            System.out.println("6. Voir le profil d'un utilisateur");
+            System.out.println("7. Voir le profil d'un fournisseur");
             System.out.println("8. S'inscrire à une activité");
-            System.out.println("9. Voir l'état de mes robots ");
-            System.out.println("10. Voir les métriques (non implementé) "); // TODO COMBINER 11 et 12
-            System.out.println("11. Afficher interets");
-            System.out.println("12. Gerer mes interets");
-            System.out.println("13. Gerer mes suiveurs");
+            System.out.println("9. Voir l'état de mes robots");
+            System.out.println("10. Voir les métriques (non implémenté)");
+            System.out.println("11. Afficher intérêts");
+            System.out.println("12. Gérer mes intérêts");
+            System.out.println("13. Gérer mes suiveurs");
             System.out.println("14. Suivre des utilisateurs");
             System.out.println("15. Acheter des composantes");
             System.out.println("16. Voir mes notifications");
-
             System.out.println("17. Autres fonctionnalités");
             System.out.println("0. Se déconnecter");
 
@@ -453,20 +579,19 @@ public class Systeme {
                     break;
 
                 case 2:
-                    modifierProfil(scanner,utilisateur);
+                    modifierProfil(scanner, utilisateur);
                     break;
 
-                case 3 :
-                    
+                case 3:
                     System.out.println("-- GESTION DE LA FLOTTE --");
-                    
+
                     GestionnaireFlotte gestionnaireFlotte = new GestionnaireFlotte(utilisateur);
                     // Utilisation des méthodes de gestionnaireFlotte
                     gestionnaireFlotte.afficherEtatFlotte();
-                    
-                    //Autres fonctionnalités pour utiliser le gestionnaire de la flotte
 
-                    //menu
+                    // Autres fonctionnalités pour utiliser le gestionnaire de la flotte
+
+                    // Menu
                     System.out.println("Choisissez une option : ");
                     System.out.println("1. Ajouter un robot");
                     System.out.println("2. Supprimer un robot");
@@ -487,116 +612,116 @@ public class Systeme {
                             int niveauBatterie = scanner.nextInt();
                             System.out.println("Entrez la consommation de CPU : ");
                             int consommation = scanner.nextInt();
-                
+
                             gestionnaireFlotte.ajouterRobot(numeroSerie, nomRobot, typeRobot, niveauBatterie, consommation);
                             System.out.println("Robot ajouté avec succès !");
                             break;
-                
+
                         case 2:
                             System.out.println("Entrez le numéro de série du robot à supprimer : ");
                             String numeroSerieSupp = scanner.nextLine();
-                
+
                             gestionnaireFlotte.supprimerRobot(numeroSerieSupp);
                             System.out.println("Robot supprimé avec succès !");
                             break;
-                
+
                         case 0:
                             System.out.println("Retour au menu principal.");
                             break;
-                
+
                         default:
                             System.out.println("Option invalide. Veuillez réessayer.");
                     }
                     break;
 
-                case 4 :
-                    System.out.println("-- CONSULTATION DE VOS ACTIVITES --");
+                case 4:
+                    System.out.println("-- CONSULTATION DE VOS ACTIVITÉS --");
                     System.out.println(utilisateur.toStringActivite());
 
                     if (utilisateur.activite.isEmpty()) {
-                        System.out.println("Vous n'avez pas d'activité enregistré");
+                        System.out.println("Vous n'avez pas d'activité enregistrée");
                     }
                     break;
 
-                case 5 :
-                    System.out.println("-- TROUVE ET ABONNE-TOI A TES AMIS --");
+                case 5:
+                    System.out.println("-- TROUVER ET ABONNER VOUS À VOS AMIS --");
                     afficherUtilisateurs();
-                    System.out.println("Entrez l'identifiant du profil auquel vous voulez souscrir : ");
+                    System.out.println("Entrez l'identifiant du profil auquel vous voulez vous abonner : ");
                     String abonnement = scanner.nextLine();
                     utilisateur.followers.add(liste_utilisateur.get(abonnement));
                     break;
 
-                case 6 :
-                    System.out.println("-- CONSULTER PROFIL UTILISATEURS --");
+                case 6:
+                    System.out.println("-- CONSULTER PROFIL UTILISATEUR --");
                     afficherUtilisateurs();
                     System.out.println("Entrez l'identifiant du profil que vous souhaitez consulter : ");
                     String profil = scanner.nextLine();
                     System.out.println(rechercherUtilisateur(profil));
                     break;
 
-                case 7 :
-                    System.out.println("-- CONSULTER PROFIL FOURNISSEURS --");
+                case 7:
+                    System.out.println("-- CONSULTER PROFIL FOURNISSEUR --");
                     afficherFournisseurs();
                     System.out.println("Entrez la compagnie du fournisseur que vous souhaitez consulter : ");
-                    String profil_fournisseur = scanner.nextLine();
-                    System.out.println(rechercherFournisseur(profil_fournisseur));
+                    String profilFournisseur = scanner.nextLine();
+                    System.out.println(rechercherFournisseur(profilFournisseur));
                     break;
 
-                case 8 :
-                    System.out.println("-- INSCRIS-TOI AUX ACTIVITÉS --");
+                case 8:
+                    System.out.println("-- INSCRIVEZ-VOUS AUX ACTIVITÉS --");
                     afficherActivites();
-                    System.out.println("Entrez le numero de l'activite auquel vous voulez vous inscrire : ");
-                    int activite_inscription = scanner.nextInt();
-                    utilisateur.activite.add(liste_activites.get(activite_inscription));
+                    System.out.println("Entrez le numéro de l'activité à laquelle vous voulez vous inscrire : ");
+                    int activiteInscription = scanner.nextInt();
+                    utilisateur.activite.add(liste_activites.get(activiteInscription));
                     break;
 
-                case 9 :
+                case 9:
                     System.out.println("-- ÉTAT DE VOS ROBOTS --");
                     GestionnaireFlotte.afficherEtatFlotte();
                     break;
 
-                case 10 :
+                case 10:
                     break;
 
                 case 11:
-                    System.out.println("Liste de vos intérêts actuels: ");
+                    System.out.println("Liste de vos intérêts actuels : ");
                     System.out.println(utilisateur.toStringInteret());
                     break;
 
                 case 12:
-                    System.out.println("Liste de vos intérêts actuels: ");
+                    System.out.println("Liste de vos intérêts actuels : ");
                     System.out.println(utilisateur.toStringInteret());
-                    System.out.println("Modifier vos Intérêts : ");
+                    System.out.println("Modifier vos intérêts : ");
                     afficherInterets();
-                    ArrayList<Interet> nouveau_interet = Commande.choisirInteret(scanner, getListeInteret());
-                    utilisateur.setInteret(nouveau_interet);
+                    ArrayList<Interet> nouveauInteret = Commande.choisirInteret(scanner, getListeInteret());
+                    utilisateur.setInteret(nouveauInteret);
                     break;
 
-                case 13 :
-                    System.out.println("-- GESTIONS DES SUIVEURS --");
-                    gestionSuiveurs(scanner,utilisateur);
+                case 13:
+                    System.out.println("-- GESTION DES SUIVEURS --");
+                    gestionSuiveurs(scanner, utilisateur);
                     break;
 
-                case 14 :
-                    System.out.println("-- Voici la liste des utilisateurs de Robotix --");
+                case 14:
+                    System.out.println("-- VOICI LA LISTE DES UTILISATEURS DE ROBOTIX --");
                     suivreUtilisateur(scanner);
                     break;
 
-                case 15 :
-                    System.out.println("-- Centre d'achat des composantes --");
+                case 15:
+                    System.out.println("-- CENTRE D'ACHAT DES COMPOSANTES --");
                     break;
 
-                case 16 :
+                case 16:
                     System.out.println("-- MESSAGERIE --");
                     ouvrirMessagerie(utilisateur);
                     break;
 
-                case 17 :
+                case 17:
                     System.out.println("-- BARRE DE RECHERCHE --");
                     autresFonctionnalites(scanner);
                     break;
 
-                case 0 :
+                case 0:
                     System.out.println("Déconnexion réussie.");
                     connected = false;
                     break;
@@ -605,7 +730,12 @@ public class Systeme {
         }
     }
 
-    // ------------------------------------------------------------------------------------------------ MENU FOURNISSEUR
+    /**
+     * Affiche le menu principal pour le fournisseur connecté et gère les interactions disponibles.
+     *
+     * @param fournisseur Le fournisseur connecté.
+     * @param scanner Le scanner pour lire les entrées utilisateur.
+     */
     public void menuFournisseur(Fournisseur fournisseur, Scanner scanner) {
         boolean connected = true;
         while (connected) {
@@ -626,7 +756,7 @@ public class Systeme {
                     System.out.println("-- MODIFICATION DE PROFIL FOURNISSEUR --");
                     System.out.println("1. Modifier mon mot de passe");
                     System.out.println("2. Modifier mon courriel");
-                    System.out.println("3. Modifier mon telephone");
+                    System.out.println("3. Modifier mon téléphone");
                     System.out.println("4. Modifier la capacité de fabrication");
 
                     int modChoice = scanner.nextInt();
@@ -652,44 +782,44 @@ public class Systeme {
                             System.out.println("Téléphone mis à jour.");
                             break;
                         case 4:
-                            System.out.println("Entrez votre nouvelle capacite de fabrication :");
+                            System.out.println("Entrez votre nouvelle capacité de fabrication :");
                             int capaciteFabrication = scanner.nextInt();
                             fournisseur.setCapaciteFabrication(capaciteFabrication);
-                            System.out.println("Courriel mis à jour.");
+                            System.out.println("Capacité de fabrication mise à jour.");
                             break;
                     }
-                    System.out.println("Vos informations ont été modifié avec succès !");
+                    System.out.println("Vos informations ont été modifiées avec succès !");
                     break;
 
                 case 3:
                     System.out.println("-- Gestionnaire des composantes --");
-                    System.out.println(fournisseur.composantes); // TODO voir ce que s'a imprime
+                    System.out.println(fournisseur.composantes); // TODO voir ce que cela imprime
                     gestionnaireComposantes(scanner, fournisseur);
                     break;
 
                 case 4:
                     System.out.println("-- Enregistrement d'une composante --");
-                    System.out.println("nom de la composante : ");
+                    System.out.println("Nom de la composante : ");
                     String nomComposante = scanner.nextLine();
 
-                    System.out.println("type de la composante : ");
+                    System.out.println("Type de la composante : ");
                     String type = scanner.nextLine();
 
-                    System.out.println("description de la composante : ");
+                    System.out.println("Description de la composante : ");
                     String description = scanner.nextLine();
 
-                    System.out.println("prix : ");
+                    System.out.println("Prix : ");
                     int prix = scanner.nextInt();
 
-                    System.out.println("Combien voulez vous en produire ? : ");
+                    System.out.println("Combien voulez-vous en produire ? : ");
                     int nombreCargaison = scanner.nextInt();
 
                     Composante composante = new Composante(nomComposante, type, description, prix);
                     fournisseur.composantes.put(composante, nombreCargaison);
-                    System.out.println("Composante ajouté à vos composantes.");
+                    System.out.println("Composante ajoutée à vos composantes.");
                     break;
 
-                case 5 :
+                case 5:
                     System.out.println("-- BARRE DE RECHERCHE --");
                     autresFonctionnalites(scanner);
                     break;
@@ -702,8 +832,12 @@ public class Systeme {
         }
     }
 
-    // ----------------------------------------------------------------------------- GESTIONNAIRE COMPOSANTE FOURNISSEUR
-
+    /**
+     * Permet de gérer les composantes du fournisseur, y compris la suppression des composantes existantes.
+     *
+     * @param scanner Le scanner pour lire les entrées utilisateur.
+     * @param fournisseur Le fournisseur dont les composantes doivent être gérées.
+     */
     public void gestionnaireComposantes(Scanner scanner, Fournisseur fournisseur) {
         try {
             System.out.println("(0) Supprimer une composante (1) Quitter");
@@ -735,10 +869,10 @@ public class Systeme {
             }
         } catch (InputMismatchException e) {
             System.out.println("Erreur : Veuillez entrer un nombre valide.");
-            scanner.next(); // clear the invalid input
+            scanner.next(); // Clear the invalid input
         } catch (Exception e) {
             System.out.println("Une erreur s'est produite : " + e.getMessage());
         }
     }
-
+    }
 }
