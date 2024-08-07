@@ -68,6 +68,18 @@ public class Composante {
         this.prix = prix;
     }
 
+    // New methods for testing
+    public void appliquerReduction(int pourcentage) {
+        if (pourcentage < 0 || pourcentage > 100) {
+            throw new IllegalArgumentException("Pourcentage invalide");
+        }
+        this.prix -= this.prix * pourcentage / 100;
+    }
+
+    public String formaterDescription() {
+        return nom + " (" + type + "): " + description;
+    }
+
     @Override
     public String toString() {
         return "Composante : " + '\n' +
