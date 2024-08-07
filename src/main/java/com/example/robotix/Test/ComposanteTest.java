@@ -1,11 +1,5 @@
-package com.example.robotix.Test;
-
-import com.example.robotix.Composante;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 public class ComposanteTest {
 
     private Composante composante;
