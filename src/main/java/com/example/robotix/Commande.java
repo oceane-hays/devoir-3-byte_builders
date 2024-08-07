@@ -245,26 +245,6 @@ public class Commande {
         }
     }
 
-    public static void ecrireUserCSV (Utilisateur utilisateur) throws IOException{
-        CSVWriter writer = new CSVWriter(new FileWriter("com/example/robotix/Data/dataUser.csv")) ;
-
-        String set[] = {utilisateur.getIdentifiant(), utilisateur.getNom(), utilisateur.getPrenom(),
-                        utilisateur.getMotDePasse(), utilisateur.getCourriel(), utilisateur.getTelephone(),
-                        String.valueOf(utilisateur.getNotifications()),
-                        String.valueOf(utilisateur.getInteret()),
-                        String.valueOf(utilisateur.getListeRobot()),
-                        String.valueOf(utilisateur.getActivite())};
-        writer.writeNext(set);
-    }
-
-    public static void ecrireFournisseurCSV (Fournisseur fournisseur) throws IOException{
-        CSVWriter writer = new CSVWriter(new FileWriter("com/example/robotix/Data/dataUser.csv")) ;
-
-        String set[] = {fournisseur.getNomCompagnie(), fournisseur.getMotDePasse(), fournisseur.getAdresse(),
-                String.valueOf(fournisseur.getComposantes())} ;
-
-        writer.writeNext(set);
-    }
 }
 
 
