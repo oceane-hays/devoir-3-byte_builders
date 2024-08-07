@@ -17,6 +17,7 @@ public class Robot {
     private int consommationMemoire;
     private ArrayList<Composante> liste_composante = new ArrayList<>();
 
+    public Robot(){}
     // Parameterized constructor with Jackson annotations
     @JsonCreator
     public Robot(

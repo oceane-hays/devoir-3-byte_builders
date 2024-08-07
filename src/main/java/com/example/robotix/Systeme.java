@@ -54,9 +54,11 @@ public class Systeme {
 
     public void afficherUtilisateurs() {
         for (Map.Entry<String, Utilisateur> entry : liste_utilisateur.entrySet()) {
-            System.out.println(entry.getValue().toStringUtilisateur());
+                System.out.println(entry.getValue().toStringUtilisateur());
         }
+
     }
+
 
     public void afficherFournisseurs() {
         for (Map.Entry<String, Fournisseur> entry : liste_fournisseur.entrySet()) {
@@ -218,8 +220,6 @@ public class Systeme {
                 }
                 break;
 
-            default:
-                System.out.println("Choix invalide.");
         }
     }
 
@@ -261,12 +261,8 @@ public class Systeme {
                     break;
 
                 case 2:
-                    // Do nothing and exit
                     break;
 
-                default:
-                    System.out.println("Choix invalide. Veuillez réessayer.");
-                    break;
             }
         }
     }
@@ -425,43 +421,68 @@ public class Systeme {
         while (connected) {
             System.out.println("Choisissez une option : ");
 
-            System.out.println("1. Afficher les informations de mon profil");
-            System.out.println("2. Modifier mes informations");
+            System.out.println("1. Gérer mon profil"); //
 
-            System.out.println("3. Gérer ma flotte");
-            System.out.println("4. Afficher mes activités");
-            System.out.println("5. Trouver des utilisateurs ");
-            System.out.println("6. Voir le profil d'un utilisateur ");
-            System.out.println("7. Voir le profil d'un fournisseur ");
-            System.out.println("8. S'inscrire à une activité");
-            System.out.println("9. Voir l'état de mes robots ");
-            System.out.println("10. Voir les métriques (non implementé) "); // TODO COMBINER 11 et 12
-            System.out.println("11. Afficher interets");
-            System.out.println("12. Gerer mes interets");
-            System.out.println("13. Gerer mes suiveurs");
-            System.out.println("14. Suivre des utilisateurs");
-            System.out.println("15. Acheter des composantes");
-            System.out.println("16. Voir mes notifications");
 
-            System.out.println("17. Autres fonctionnalités");
+            System.out.println("2. Afficher, Gerer mes interets"); // ->3
+
+            System.out.println("3. Gerer mes suiveurs");
+            System.out.println("4. Suivre des utilisateurs");
+
+            System.out.println("5. Gérer ma flotte"); // 5
+            //System.out.println("10. Voir les métriques (non implementé) ");
+
+            System.out.println("6. Gérer, Afficher mes activités"); // 6
+
+
+            System.out.println("7. Acheter des composantes");  // 7
+
+            System.out.println("8. Voir mes notifications");
+
+            System.out.println("9. Recherche dans le Système");  // 8
             System.out.println("0. Se déconnecter");
 
-            int choix = Validation.validerChoix(17);
+            int choix = Validation.validerChoix(9);
             switch (choix) {
                 case 1:
-                    System.out.println(utilisateur.utilisateur());
+                    System.out.println("1. Afficher les informations de mon profil");
+                    System.out.println("2. Modifier mes informations");
+                    switch (Validation.validerChoix(2)) {
+                        case 1 -> System.out.println(utilisateur.utilisateur());
+                        case 2 -> modifierProfil(scanner, utilisateur);
+                    }
                     break;
 
                 case 2:
-                    modifierProfil(scanner,utilisateur);
+                    System.out.println("1. Afficher intérets");  // 8
+                    System.out.println("2. Modifier intérets");  // 8
+
+
+                    switch (Validation.validerChoix(2)){
+                        case 1:
+                            System.out.println("Liste de vos intérêts actuels: ");
+                            System.out.println(utilisateur.toStringInteret());
+                            break;
+
+                        case 2:
+                            System.out.println("Liste de vos intérêts actuels: ");
+                            System.out.println(utilisateur.toStringInteret());
+                            System.out.println("Modifier vos Intérêts : ");
+                            afficherInterets();
+                            ArrayList<Interet> nouveau_interet = Commande.choisirInteret(scanner, getListeInteret());
+                            utilisateur.setInteret(nouveau_interet);
+                            break;
+                    }
                     break;
 
-                case 3 :
+
+                case 5 :
                     
                     System.out.println("-- GESTION DE LA FLOTTE --");
                     
                     GestionnaireFlotte gestionnaireFlotte = new GestionnaireFlotte(utilisateur);
                     // Utilisation des méthodes de gestionnaireFlotte
+                    System.out.println("-- Etat de votre flotte --");
                     gestionnaireFlotte.afficherEtatFlotte();
                     
                     //Autres fonctionnalités pour utiliser le gestionnaire de la flotte
@@ -477,19 +498,28 @@ public class Systeme {
 
                     switch (gestionChoix) {
                         case 1:
-                            System.out.println("Entrez le numéro de série du nouveau robot : ");
-                            String numeroSerie = scanner.nextLine();
-                            System.out.println("Entrez le nom du robot : ");
-                            String nomRobot = scanner.nextLine();
-                            System.out.println("Entrez le type du robot : ");
-                            String typeRobot = scanner.nextLine();
-                            System.out.println("Entrez le niveau de batterie : ");
-                            int niveauBatterie = scanner.nextInt();
-                            System.out.println("Entrez la consommation de CPU : ");
-                            int consommation = scanner.nextInt();
-                
-                            gestionnaireFlotte.ajouterRobot(numeroSerie, nomRobot, typeRobot, niveauBatterie, consommation);
-                            System.out.println("Robot ajouté avec succès !");
+                            try {
+                                System.out.println("Entrez le numéro de série du nouveau robot : ");
+                                String numeroSerie = scanner.nextLine();
+                                System.out.println("Entrez le nom du robot : ");
+                                String nomRobot = scanner.nextLine();
+                                System.out.println("Entrez le type du robot : ");
+                                String typeRobot = scanner.nextLine();
+                                System.out.println("Entrez le niveau de batterie : ");
+                                int niveauBatterie = scanner.nextInt();
+                                System.out.println("Entrez la consommation de CPU (num qui represente %): ");
+                                int consommationCpu = scanner.nextInt();
+                                System.out.println("Entrez la consommation de Memoire (num qui represente %): ");
+                                int mem = scanner.nextInt();
+                                System.out.println("Position ecrit comme suit: (x, y, z)");
+                                String pos = scanner.nextLine();
+
+                                gestionnaireFlotte.ajouterRobot(numeroSerie, nomRobot, typeRobot, 0, pos, niveauBatterie, consommationCpu, mem, new ArrayList<>());
+                                System.out.println("Robot ajouté avec succès !");
+                            }
+                            catch (Exception e){
+                                System.out.println("Recommencez, mauvais type d'entree");
+                            }
                             break;
                 
                         case 2:
@@ -503,95 +533,101 @@ public class Systeme {
                         case 0:
                             System.out.println("Retour au menu principal.");
                             break;
-                
-                        default:
-                            System.out.println("Option invalide. Veuillez réessayer.");
+
                     }
                     break;
 
-                case 4 :
-                    System.out.println("-- CONSULTATION DE VOS ACTIVITES --");
-                    System.out.println(utilisateur.toStringActivite());
-
-                    if (utilisateur.activite.isEmpty()) {
-                        System.out.println("Vous n'avez pas d'activité enregistré");
-                    }
-                    break;
-
-                case 5 :
-                    System.out.println("-- TROUVE ET ABONNE-TOI A TES AMIS --");
-                    afficherUtilisateurs();
-                    System.out.println("Entrez l'identifiant du profil auquel vous voulez souscrir : ");
-                    String abonnement = scanner.nextLine();
-                    utilisateur.followers.add(liste_utilisateur.get(abonnement));
-                    break;
 
                 case 6 :
-                    System.out.println("-- CONSULTER PROFIL UTILISATEURS --");
-                    afficherUtilisateurs();
-                    System.out.println("Entrez l'identifiant du profil que vous souhaitez consulter : ");
-                    String profil = scanner.nextLine();
-                    System.out.println(rechercherUtilisateur(profil));
+                    System.out.println("1. Afficher Activités");  // 8
+                    System.out.println("2. Modifier Activités");  // 8
+
+                    switch (Validation.validerChoix(2)) {
+                        case 1 -> {
+                            System.out.println("-- CONSULTATION DE VOS ACTIVITES --");
+                            System.out.println(utilisateur.toStringActivite());
+                            if (utilisateur.activite.isEmpty()) {
+                                System.out.println("Vous n'avez pas d'activité enregistré");
+                            }
+                        }
+                        case 2 -> {
+                            System.out.println("-- INSCRIS-TOI AUX ACTIVITÉS --");
+                            afficherActivites();
+                            System.out.println("Entrez le numero de l'activite auquel vous voulez vous inscrire : ");
+                            int activite_inscription = scanner.nextInt();
+                            utilisateur.activite.add(liste_activites.get(activite_inscription));
+                        }
+                    }
                     break;
 
+
+                case 4:
+                    System.out.println("-- TROUVE ET ABONNE-TOI A TES AMIS --");
+
+                    if (liste_utilisateur.isEmpty()) {
+                        System.out.println("Aucun utilisateur enregistré dans Robotix");
+                    } else {
+                        afficherUtilisateurs();
+
+                        System.out.println("Entrez l'identifiant du profil auquel vous voulez souscrire : ");
+                        String abonnement = scanner.nextLine();
+                        Utilisateur utilisateurASuivre = liste_utilisateur.get(abonnement);
+
+                        if (utilisateurASuivre == null) {
+                            System.out.println(">Utilisateur introuvable>");
+                        } else {
+                            utilisateur.followers.add(utilisateurASuivre);
+                            System.out.println("Vous êtes maintenant abonné à " + utilisateurASuivre.getNom() + "!");
+                        }
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("-- GESTION DES SUIVEURS --");
+
+                    if (utilisateur.followers.isEmpty()) {
+                        System.out.println("Vous n'êtes suivi par personne");
+                    } else {
+                        gestionSuiveurs(scanner, utilisateur);
+                    }
+                    break;
+
+
                 case 7 :
-                    System.out.println("-- CONSULTER PROFIL FOURNISSEURS --");
+                    System.out.println("-- Centre d'achat des composantes --");
+                    System.out.println("-- Choisissez un fournisseur --");
+
                     afficherFournisseurs();
-                    System.out.println("Entrez la compagnie du fournisseur que vous souhaitez consulter : ");
-                    String profil_fournisseur = scanner.nextLine();
-                    System.out.println(rechercherFournisseur(profil_fournisseur));
+                    System.out.println("-- Entrez le nom du fournisseur choisit --");
+                    String nom = scanner.nextLine();
+                    try {
+                        Fournisseur four = rechercherFournisseur(nom);
+                        four.composantes.forEach((composante, integer) -> {
+                            System.out.println(integer.toString() + " " + composante.toString());
+                        });
+                        System.out.println("-- Entrez le nom de la composante a acheter (0 pour cancel) --");
+                        String choix2 = scanner.nextLine();
+                        if(choix2 == "0"){
+                            System.out.println("Annulle");
+                        }
+                        else{
+                            System.out.println("Composante achetee");
+                            // TODO Ajouter au Robot
+                        }
+
+                    }
+                    catch (Exception e){
+                        System.out.println("Echec de la recherche, reeseye");
+                    }
+
                     break;
 
                 case 8 :
-                    System.out.println("-- INSCRIS-TOI AUX ACTIVITÉS --");
-                    afficherActivites();
-                    System.out.println("Entrez le numero de l'activite auquel vous voulez vous inscrire : ");
-                    int activite_inscription = scanner.nextInt();
-                    utilisateur.activite.add(liste_activites.get(activite_inscription));
-                    break;
-
-                case 9 :
-                    System.out.println("-- ÉTAT DE VOS ROBOTS --");
-                    GestionnaireFlotte.afficherEtatFlotte();
-                    break;
-
-                case 10 :
-                    break;
-
-                case 11:
-                    System.out.println("Liste de vos intérêts actuels: ");
-                    System.out.println(utilisateur.toStringInteret());
-                    break;
-
-                case 12:
-                    System.out.println("Liste de vos intérêts actuels: ");
-                    System.out.println(utilisateur.toStringInteret());
-                    System.out.println("Modifier vos Intérêts : ");
-                    afficherInterets();
-                    ArrayList<Interet> nouveau_interet = Commande.choisirInteret(scanner, getListeInteret());
-                    utilisateur.setInteret(nouveau_interet);
-                    break;
-
-                case 13 :
-                    System.out.println("-- GESTIONS DES SUIVEURS --");
-                    gestionSuiveurs(scanner,utilisateur);
-                    break;
-
-                case 14 :
-                    System.out.println("-- Voici la liste des utilisateurs de Robotix --");
-                    suivreUtilisateur(scanner);
-                    break;
-
-                case 15 :
-                    System.out.println("-- Centre d'achat des composantes --");
-                    break;
-
-                case 16 :
                     System.out.println("-- MESSAGERIE --");
                     ouvrirMessagerie(utilisateur);
                     break;
 
-                case 17 :
+                case 9 :
                     System.out.println("-- BARRE DE RECHERCHE --");
                     autresFonctionnalites(scanner);
                     break;
@@ -699,6 +735,7 @@ public class Systeme {
                     connected = false;
                     break; // Sort de la boucle pour se déconnecter
             }
+            Commande.updateFournisseur(fournisseur);
         }
     }
 

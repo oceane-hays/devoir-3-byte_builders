@@ -38,7 +38,7 @@ public class RobotixMainTest {
         liste_utilisateur.put(john.getIdentifiant(), john);
 
         Fournisseur fournisseur1 = new Fournisseur("Hello World", "password1", "2035 rue de la Cornemuse",
-                "email1@example.com", "+1234567890", 100);
+                "email1@example.com", "+1234567890", 100, new HashMap<>());
         liste_fournisseur.put(fournisseur1.getNomCompagnie(), fournisseur1);
     }
 
@@ -56,7 +56,7 @@ public class RobotixMainTest {
     @Test
     public void testAjouterFournisseur() {
         Fournisseur newFournisseur = new Fournisseur("Tech Supply", "password", "123 Tech Road",
-                "tech@example.com", "+1112223333", 200);
+                "tech@example.com", "+1112223333", 200, new HashMap<>());
         systeme.ajouterFournisseur(newFournisseur.getNomCompagnie(), newFournisseur);
 
         assertTrue(liste_fournisseur.containsKey(newFournisseur.getNomCompagnie()));
@@ -79,7 +79,7 @@ public class RobotixMainTest {
     public void testInscriptionFournisseur() {
         // Simuler l'inscription d'un fournisseur
         Fournisseur newFournisseur = new Fournisseur("Gadget World", "securepassword", "456 Gadget Lane",
-                "gadget@example.com", "+0987654321", 250);
+                "gadget@example.com", "+0987654321", 250, new HashMap<>());
         systeme.ajouterFournisseur(newFournisseur.getNomCompagnie(), newFournisseur);
 
         // Vérifiez que le fournisseur a été ajouté correctement

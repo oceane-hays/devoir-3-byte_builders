@@ -9,8 +9,9 @@ public class GestionnaireFlotte {
         this.utilisateur = utilisateur;
     }
 
-    public void ajouterRobot(String numeroSerie, String nom, String type, int batterie, int consommationCPU) {
-        Robot robot = new Robot(numeroSerie, nom, type, batterie, consommationCPU, null);
+    public void ajouterRobot(String numeroSerie, String nom, String type, int vitesse, String position,
+                             int batterie, int consommationCPU, int consommationMemoire, ArrayList<Composante> composantes) {
+        Robot robot = new Robot(numeroSerie, nom, type, batterie, consommationCPU, consommationMemoire,vitesse,position,composantes);
         utilisateur.ajouterRobot(robot);
     }
 
@@ -49,11 +50,16 @@ public class GestionnaireFlotte {
     public static void afficherEtatFlotte() {
         if (!utilisateur.liste_robot.isEmpty()) {
             for (Robot robot : utilisateur.liste_robot) {
-                System.out.println("Robot : " + robot.getNom() + " (" + robot.getNumSerie() + ")");
+
+                AfficherMetriquesFlotte.afficherDetailsRobot(robot);
+
+
                 if(robot.getComposantes() == null) robot.setComposantes(new ArrayList<>());
+
                 for (Composante composante : robot.getComposantes()) {
                     System.out.println("  Composante : " + composante.getNom() + " - " + composante.getType());
                 }
+
             }
         } else {
             System.out.println("Votre flotte ne contient aucun robot. ");

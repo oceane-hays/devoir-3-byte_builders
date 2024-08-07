@@ -103,27 +103,27 @@ public class RobotixMain {
 
         // --FOURNISSEUR --
         Fournisseur fournisseur1 = new Fournisseur("Hello World", "password1", "2035 rue de la Cornemuse",
-                "email1@example.com", "+1234567890", 100);
+                "email1@example.com", "+1234567890", 100, new HashMap<>());
         fournisseur1.composantes.put(cpu,70); // TODO a voir si on veut la composante ou le nom de la composante en clé
 
         Fournisseur fournisseur2 = new Fournisseur("Pimpimpi", "password2", "4520 avenue Champetre",
-                "email2@example.com", "+2345678901", 150);
+                "email2@example.com", "+2345678901", 150, new HashMap<>());
         fournisseur2.composantes.put(cpu, 50);
 
         Fournisseur fournisseur3 = new Fournisseur("JavaYop", "password3", "6220 boulevard de Birmanie",
-                "email3@example.com", "+3456789012", 200);
+                "email3@example.com", "+3456789012", 200, new HashMap<>());
         fournisseur3.composantes.put(haut_parleurs, 122);
 
         Fournisseur fournisseur4 = new Fournisseur("Fease", "password4", "1000 rue du Baccalauréat",
-                "email4@example.com", "+4567890123", 120);
+                "email4@example.com", "+4567890123", 120, new HashMap<>());
         fournisseur4.composantes.put(cpu, 38);
 
         Fournisseur fournisseur5 = new Fournisseur("Denno", "password5", "4960 rue du Script Python",
-                "email5@example.com", "+5678901234", 180);
+                "email5@example.com", "+5678901234", 180, new HashMap<>());
         fournisseur5.composantes.put(cpu, 89);
 
         Fournisseur fournisseur6 = new Fournisseur("Samuel Inc", "password6", "5235 chemin du Code Java",
-                "email6@example.com", "+6789012345", 90);
+                "email6@example.com", "+6789012345", 90, new HashMap<>());
         fournisseur6.composantes.put(haut_parleurs, 30);
 
 
@@ -134,6 +134,14 @@ public class RobotixMain {
         // -- IMPLÉMENTATION DU SYSTÈME --
         Systeme systeme = new Systeme (liste_utilisateur, liste_fournisseur, liste_activites,
                 liste_interet, liste_composante);
+
+
+        // Tous les utilisateurs
+        ArrayList<Utilisateur> utilisateurs = Commande.LireUtilisateurs();
+        ArrayList<Fournisseur> fournisseurs = Commande.LireFournisseur();
+        systeme.liste_utilisateur = Commande.listeVersMap(utilisateurs);
+        systeme.liste_fournisseur = Commande.listeVersMap2(fournisseurs);
+
 
         systeme.ajouterUtilisateur(john.getIdentifiant(), john);
         systeme.ajouterUtilisateur(jane.getIdentifiant(), jane);
@@ -152,10 +160,6 @@ public class RobotixMain {
         systeme.ajouterFournisseur(fournisseur4.getNomCompagnie(), fournisseur4);
         systeme.ajouterFournisseur(fournisseur5.getNomCompagnie(), fournisseur5);
         systeme.ajouterFournisseur(fournisseur6.getNomCompagnie(), fournisseur6);
-
-        // Tous les utilisateurs
-        ArrayList<Utilisateur> utilisateurs = Commande.LireUtilisateurs();
-        systeme.liste_utilisateur = Commande.listeVersMap(utilisateurs);
 
         // -------------------------------------------------------------------------------------------------------------
 
@@ -275,11 +279,12 @@ public class RobotixMain {
                     int capacite_maximale = scanner.nextInt();
 
                     Fournisseur fournisseur = new Fournisseur(nom_compagnie, mot_de_passe_fournisseur, adresse,
-                            email_fournisseur, telephone_fournisseur, capacite_maximale);
+                            email_fournisseur, telephone_fournisseur, capacite_maximale, new HashMap<>());
 
                     systeme.ajouterFournisseur(nom_compagnie, fournisseur);
 
                     System.out.println("Votre inscription a été pris en compte. Vous recevrez un mail de confirmation sous 24h !");
+                    Commande.ecrireFournisseurJson(fournisseur);
                 }
 
                 case 3 -> {

@@ -206,6 +206,65 @@ public class Commande {
         }
     }
 
+    public static void updateFournisseur(Fournisseur utilisateur) {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        ArrayList<Fournisseur> utilisateurs = LireFournisseur();
+        boolean updated = false;
+
+        // Parcourir la liste des utilisateurs pour trouver l'utilisateur à mettre à jour
+        for (int i = 0; i < utilisateurs.size(); i++) {
+            Fournisseur current = utilisateurs.get(i);
+            if (current.getNomCompagnie().equals(utilisateur.getNomCompagnie())) {
+                // Mettre à jour les informations de l'utilisateur
+                utilisateurs.set(i, utilisateur);
+                updated = true;
+                break;
+            }
+        }
+
+        if (updated) {
+            try {
+                // Réécrire la liste mise à jour dans le fichier JSON
+                objectMapper.writeValue(new File("utilisateurs.json"), utilisateurs);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Utilisateur not found in utilisateurs.json");
+        }
+    }
+
+
+    public static ArrayList<Fournisseur> LireFournisseur() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ArrayList<Fournisseur> utilisateurs = new ArrayList<>();
+
+        try {
+            // Deserialize the JSON file to a list of Utilisateur objects
+            utilisateurs = (ArrayList<Fournisseur>) objectMapper.readValue(new File("fournisseurs.json"), new TypeReference<List<Fournisseur>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return utilisateurs;
+    }
+
+    public static void ecrireFournisseurJson(Fournisseur utilisateur){
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        ArrayList<Fournisseur> utilisateurs = LireFournisseur();
+        utilisateurs.add(utilisateur);
+
+        try {
+            // Serialize the object to a JSON file
+            objectMapper.writeValue(new File("fournisseurs.json"), utilisateurs);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static ArrayList<Utilisateur> LireUtilisateurs() {
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Utilisateur> utilisateurs = new ArrayList<>();
@@ -213,7 +272,6 @@ public class Commande {
         try {
             // Deserialize the JSON file to a list of Utilisateur objects
             utilisateurs = (ArrayList<Utilisateur>) objectMapper.readValue(new File("utilisateurs.json"), new TypeReference<List<Utilisateur>>() {});
-            System.out.println("List of Utilisateur objects deserialized from utilisateurs.json");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -225,6 +283,15 @@ public class Commande {
 
         for (Utilisateur utilisateur : utilisateurs) {
             utilisateurMap.put(utilisateur.getIdentifiant(), utilisateur);
+        }
+
+        return utilisateurMap;
+    }
+    public static HashMap<String, Fournisseur> listeVersMap2(ArrayList<Fournisseur> utilisateurs) {
+        HashMap<String, Fournisseur> utilisateurMap = new HashMap<>();
+
+        for (Fournisseur utilisateur : utilisateurs) {
+            utilisateurMap.put(utilisateur.getNomCompagnie(), utilisateur);
         }
 
         return utilisateurMap;

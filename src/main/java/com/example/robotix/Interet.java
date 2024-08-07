@@ -1,6 +1,7 @@
 package com.example.robotix;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Interet {
@@ -41,7 +42,8 @@ public class Interet {
         return description;
     }
 
+    @JsonIgnore
     public Integer getId() {
-        return null;
+        return num;
     }
 }

@@ -27,7 +27,7 @@ public class AfficherMetriquesFlotte {
         }
     }
 
-    public String afficherDetailsRobot(Robot robot) {
+    public static String afficherDetailsRobot(Robot robot) {
         return "Robot: " + robot.getNom() + '\n' +
                 "Numéro de série: " + robot.getNumSerie() + '\n' +
                 "Position: " + robot.getPosition() + '\n' +

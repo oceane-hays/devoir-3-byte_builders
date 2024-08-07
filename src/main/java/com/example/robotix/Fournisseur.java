@@ -1,5 +1,9 @@
 package com.example.robotix;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.HashMap;
 
 public class Fournisseur {
@@ -9,10 +13,19 @@ public class Fournisseur {
     private String courriel;
     private String telephone;
     private int capacite_fabrication;
+
+    @JsonDeserialize(keyUsing = MapDeserialiser.class)
     public HashMap<Composante, Integer> composantes = new HashMap<>();
 
-    public Fournisseur(String nom_compagnie, String mot_de_passe, String adresse,
-                       String courriel, String telephone, int capacite_fabrication) {
+    @JsonCreator
+    public Fournisseur(
+            @JsonProperty("nom_compagnie") String nom_compagnie,
+            @JsonProperty("mot_de_passe") String mot_de_passe,
+            @JsonProperty("adresse") String adresse,
+            @JsonProperty("courriel") String courriel,
+            @JsonProperty("telephone") String telephone,
+            @JsonProperty("capacite_fabrication") int capacite_fabrication,
+            @JsonProperty("composantes") HashMap<Composante, Integer> composantes) {
 
         this.nom_compagnie = nom_compagnie;
         this.mot_de_passe = mot_de_passe;
@@ -23,10 +36,12 @@ public class Fournisseur {
         this.composantes = composantes;
     }
 
+    @JsonProperty("mot_de_passe")
     public String getMotDePasse() {
         return mot_de_passe;
     }
 
+    @JsonProperty("nom_compagnie")
     public String getNomCompagnie() {
         return nom_compagnie;
     }
@@ -76,8 +91,6 @@ public class Fournisseur {
         return composantes;
     }
 
-
-
     public String fournisseur() {
         return "Fournisseur : " + '\n' +
                 "Compagnie : " + nom_compagnie + '\n' +
@@ -89,7 +102,7 @@ public class Fournisseur {
                 "Compagnie : " + nom_compagnie + '\n' +
                 "adresse : " + adresse + '\n' +
                 "email : " + courriel + '\n' +
-                "capacite de fabrication : " + capacite_fabrication  + '\n' +
+                "capacite de fabrication : " + capacite_fabrication + '\n' +
                 "telephone : " + telephone + '\n' +
                 "composantes : " + composantes + '\n';
     }

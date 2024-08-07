@@ -35,8 +35,8 @@ public class GestionnaireFlotteTest {
     @Test
     public void testSupprimerRobot() {
 
-        Robot robot1 = new Robot("001", "1erRobot", "Menager", 100, 10, null);
-        Robot robot2 = new Robot("002", "2eRobot", "Acrobate", 200, 60, null);
+        Robot robot1 = new Robot("001", "1erRobot", "Menager", 100, 10, 2,0, "sda", new ArrayList<>());
+        Robot robot2 = new Robot("002", "2eRobot", "Acrobate", 200, 60, 2, 0, "sda", new ArrayList<>());
         // rajout de robots random et test de si on les a enleves ensuite.
         utilisateur.ajouterRobot(robot1);
         utilisateur.ajouterRobot(robot2);

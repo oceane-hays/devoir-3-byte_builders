@@ -1,5 +1,7 @@
 package com.example.robotix;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 
 
@@ -19,7 +21,7 @@ public class Utilisateur {
         public ArrayList<Robot> liste_robot = new ArrayList<Robot>();
         public ArrayList<Notification> notifications = new ArrayList<Notification>();
 
-
+        public Utilisateur(){}
         public Utilisateur(String identifiant, String nom, String prenom, String mot_de_passe,
                            String courriel, String telephone, String compagnie, boolean emailNotificationsEnabled,
                            ArrayList<Interet> interet, ArrayList<Utilisateur> followers,
@@ -46,7 +48,13 @@ public class Utilisateur {
 
         public String getPrenom() { return prenom;}
 
+        @JsonProperty("mot_de_passe")
         public String getMotDePasse() {return mot_de_passe;}
+
+        @JsonProperty("compagnie")
+        public String getCompagnie(){
+            return this.compagnie;
+        }
 
         public String getCourriel() { return courriel;}
 
@@ -163,8 +171,26 @@ public class Utilisateur {
         this.emailNotificationsEnabled = emailNotificationsEnabled;
     }
 
+    public String utilisateur() {
+        StringBuilder followersIds = new StringBuilder();
+        if (followers != null) {
+            for (Utilisateur follower : followers) {
+                if (follower != null) {
+                    followersIds.append(follower.getIdentifiant()).append(" ");
+                }
+            }
+        }
 
-    public boolean utilisateur() {
-            return true;
+        return  "identifiant : " + identifiant + '\n' +
+                "nom : " + nom + '\n' +
+                "prenom : " + prenom + '\n' +
+                "courriel : " + courriel + '\n' +
+                "telephone : " + telephone + '\n' +
+                "compagnie : " + compagnie + '\n' +
+                "interets : " + interet + '\n' +
+                "followers : " + followersIds.toString().trim() + '\n' +
+                "activites : " + activite + '\n';
     }
+
+
 }
