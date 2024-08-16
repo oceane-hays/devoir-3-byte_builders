@@ -13,11 +13,22 @@ import java.util.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+
+/**
+ * La classe {@code Commande} contient des méthodes utilitaires pour gérer les
+ * utilisateurs, fournisseurs, intérêts, activités, et les opérations de lecture/écriture
+ * de fichiers CSV et JSON dans le système Robotix.
+ */
 public class Commande {
-
-
-
     // ------------------------------------------------------------------------------- S'INSCRIRE EN TANT QU'UTILISATEUR
+    /**
+     * Permet à un utilisateur de choisir un pseudo unique.
+     *
+     * @param scanner Le scanner pour lire l'entrée de l'utilisateur.
+     * @param liste_utilisateur La liste des utilisateurs existants.
+     * @return Le pseudo unique choisi par l'utilisateur.
+     */
     public static String ajouterPseudoUnique(Scanner scanner, HashMap<String, Utilisateur> liste_utilisateur) {
         boolean cherchePseudo = true;
         System.out.println("entrez votre pseudo : ");
@@ -44,6 +55,13 @@ public class Commande {
         return pseudo;
     }
 
+    /**
+     * Permet à un utilisateur de choisir une adresse email unique.
+     *
+     * @param scanner Le scanner pour lire l'entrée de l'utilisateur.
+     * @param liste_utilisateur La liste des utilisateurs existants.
+     * @return L'adresse email unique choisie par l'utilisateur.
+     */
     public static String ajouterEmailUnique(Scanner scanner, HashMap<String, Utilisateur> liste_utilisateur) {
         boolean chercheEmail = true;
         System.out.println("entrez votre adresse email : ");
@@ -72,6 +90,13 @@ public class Commande {
     }
 
 
+    /**
+     * Permet à un utilisateur de choisir jusqu'à 10 intérêts parmi une liste d'intérêts.
+     *
+     * @param scanner Le scanner pour lire l'entrée de l'utilisateur.
+     * @param liste_interet La liste des intérêts disponibles.
+     * @return La liste des intérêts choisis par l'utilisateur.
+     */
     public static ArrayList<Interet> choisirInteret(Scanner scanner, HashMap<Integer, Interet> liste_interet) {
         ArrayList<Interet> utilisateur_interet = new ArrayList<Interet>();
         boolean encours = true;
@@ -166,17 +191,14 @@ public class Commande {
 
 
     // -------------------------------------------------------------------------------------------- COMMANDE FICHIER CSV
-    public static void traiterFichier (String pathName) throws IOException, CsvValidationException {
-        CSVReader csvReader = new CSVReader(new FileReader(pathName)) ;
-        String[] lines;
-        /*while ((lines = csvReader.readNext()) != null) {
 
-            for (int i = 0; i < lines.length; i++) {
-
-            }
-        }*/
-    }
-
+    /**
+     * Met à jour les informations d'un utilisateur dans le fichier JSON `utilisateurs.json`.
+     * Cette méthode recherche l'utilisateur correspondant dans la liste existante,
+     * met à jour ses informations et réécrit la liste dans le fichier.
+     *
+     * @param utilisateur L'utilisateur dont les informations doivent être mises à jour.
+     */
     public static void updateUtilisateur(Utilisateur utilisateur) {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -206,7 +228,14 @@ public class Commande {
         }
     }
 
-    public static void updateFournisseur(Fournisseur utilisateur) {
+    /**
+     * Met à jour les informations d'un fournisseur dans le fichier JSON `fournisseurs.json`.
+     * Cette méthode recherche le fournisseur correspondant dans la liste existante,
+     * met à jour ses informations et réécrit la liste dans le fichier.
+     *
+     * @param fournisseur Le fournisseur dont les informations doivent être mises à jour.
+     */
+    public static void updateFournisseur(Fournisseur fournisseur) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         ArrayList<Fournisseur> utilisateurs = LireFournisseur();
@@ -215,9 +244,9 @@ public class Commande {
         // Parcourir la liste des utilisateurs pour trouver l'utilisateur à mettre à jour
         for (int i = 0; i < utilisateurs.size(); i++) {
             Fournisseur current = utilisateurs.get(i);
-            if (current.getNomCompagnie().equals(utilisateur.getNomCompagnie())) {
+            if (current.getNomCompagnie().equals(fournisseur.getNomCompagnie())) {
                 // Mettre à jour les informations de l'utilisateur
-                utilisateurs.set(i, utilisateur);
+                utilisateurs.set(i, fournisseur);
                 updated = true;
                 break;
             }
@@ -297,8 +326,8 @@ public class Commande {
         return utilisateurMap;
     }
 
-    public static void ecrireUserJson(Utilisateur utilisateur){
 
+    public static void ecrireUserJson(Utilisateur utilisateur){
         ObjectMapper objectMapper = new ObjectMapper();
 
         ArrayList<Utilisateur> utilisateurs = LireUtilisateurs();

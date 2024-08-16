@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Robotix">
+    <output-path>$PROJECT_DIR$/../Robotix/out/artifacts/Robotix</output-path>
+    <root id="root">
+      <element id="archive" name="Robotix.jar">
+        <element id="module-output" name="Robotix" />
+      </element>
+    </root>
+  </artifact>
+</component>

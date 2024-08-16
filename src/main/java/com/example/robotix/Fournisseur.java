@@ -6,7 +6,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.HashMap;
 
+/**
+ * La classe {@code Fournisseur} représente un fournisseur avec des attributs tels que le nom de la compagnie,
+ * le mot de passe, l'adresse, le courriel, le téléphone, la capacité de fabrication et une liste de composantes.
+ */
 public class Fournisseur {
+
     private String nom_compagnie;
     private String mot_de_passe;
     private String adresse;
@@ -17,6 +22,17 @@ public class Fournisseur {
     @JsonDeserialize(keyUsing = MapDeserialiser.class)
     public HashMap<Composante, Integer> composantes = new HashMap<>();
 
+    /**
+     * Constructeur paramétré de la classe {@code Fournisseur} avec annotations Jackson pour la désérialisation JSON.
+     *
+     * @param nom_compagnie        Le nom de la compagnie du fournisseur.
+     * @param mot_de_passe         Le mot de passe du compte fournisseur.
+     * @param adresse              L'adresse du fournisseur.
+     * @param courriel             L'adresse courriel du fournisseur.
+     * @param telephone            Le numéro de téléphone du fournisseur.
+     * @param capacite_fabrication La capacité de fabrication du fournisseur.
+     * @param composantes          Une carte des composantes avec leurs quantités respectives.
+     */
     @JsonCreator
     public Fournisseur(
             @JsonProperty("nom_compagnie") String nom_compagnie,
@@ -35,7 +51,6 @@ public class Fournisseur {
         this.capacite_fabrication = capacite_fabrication;
         this.composantes = composantes;
     }
-
     @JsonProperty("mot_de_passe")
     public String getMotDePasse() {
         return mot_de_passe;

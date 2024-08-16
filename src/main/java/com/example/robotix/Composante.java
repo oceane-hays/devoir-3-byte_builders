@@ -3,6 +3,10 @@ package com.example.robotix;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * La classe {@code Composante} représente une composante avec des attributs tels que
+ * le nom, le type, la description et le prix.
+ */
 public class Composante {
 
     private String nom;
@@ -10,10 +14,19 @@ public class Composante {
     private String description;
     private int prix;
 
-    // Default constructor
+    /**
+     * Constructeur par défaut de la classe {@code Composante}.
+     */
     public Composante() {}
 
-    // Parameterized constructor with Jackson annotations
+    /**
+     * Constructeur paramétré avec annotations Jackson pour la désérialisation JSON.
+     *
+     * @param nom         Le nom de la composante.
+     * @param type        Le type de la composante.
+     * @param description Une brève description de la composante.
+     * @param prix        Le prix de la composante en unités monétaires.
+     */
     @JsonCreator
     public Composante(
             @JsonProperty("nom") String nom,

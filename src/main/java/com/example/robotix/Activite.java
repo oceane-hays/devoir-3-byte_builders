@@ -3,6 +3,11 @@ package com.example.robotix;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * La classe {@code Activite} représente une activité dans le système Robotix,
+ * avec des informations sur son nom, statut, dates de début et de fin, ainsi que
+ * le nombre de points associés.
+ */
 public class Activite {
     private String nom;
     private String statut;
@@ -10,9 +15,21 @@ public class Activite {
     private String date_fin;
     private int nombre_point;
 
-    // Default constructor
+    /**
+     * Constructeur par défaut pour créer une instance vide de {@code Activite}.
+     */
     public Activite() {}
 
+    /**
+     * Constructeur paramétré pour créer une instance de {@code Activite} avec des valeurs
+     * spécifiées pour ses attributs.
+     *
+     * @param nom           Le nom de l'activité.
+     * @param statut        Le statut de l'activité (ex. : "en cours", "terminée").
+     * @param date_debut    La date de début de l'activité.
+     * @param date_fin      La date de fin de l'activité.
+     * @param nombre_point  Le nombre de points associés à l'activité.
+     */
     // Parameterized constructor with annotations
     @JsonCreator
     public Activite(

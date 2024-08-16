@@ -4,14 +4,25 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * La classe {@code Interet} représente un intérêt avec un numéro unique et une description.
+ */
 public class Interet {
+
     private int num;
     private String description;
 
-    // Default constructor
+    /**
+     * Constructeur par défaut de la classe {@code Interet}.
+     */
     public Interet() {}
 
-    // Parameterized constructor with annotations
+    /**
+     * Constructeur paramétré de la classe {@code Interet} avec annotations Jackson pour la désérialisation JSON.
+     *
+     * @param num         Le numéro unique de l'intérêt.
+     * @param description La description de l'intérêt.
+     */
     @JsonCreator
     public Interet(
             @JsonProperty("num") int num,
